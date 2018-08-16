@@ -1,0 +1,48 @@
+<% layout('../layout') -%>
+  <div ng-controller="CreateController">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1 class="text-center">Tạo Phim Mới</h1>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <form>
+          <div class="col-md-5">
+          </div>
+          <div class="col-md-7">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Tên Bộ Phim</label>
+              <input ng-model="movieName" type="text" class="form-control" id="movieName" placeholder="Tên bộ phim">
+            </div>
+            <div class="form-group">
+              <label for="exampleSelect2">Thể loại phim:</label>
+              <select class="form-control" id="movieType" ng-model="movieType">
+                <option  ng-repeat="type in movieTypes">{{type}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="date">Thời gian phát hành</label>
+              <input type="text" class="form-control" id="datepicker">
+            </div>
+            <div class="form-group">
+              <label for="exampleTextarea">Nội dung mô tả</label>
+              <textarea ng-model="description" class="form-control" id="exampleTextarea" placeholder="Điền thông tin thêm về bộ phim, như diễn viên chính, nội dung bộ phim,..."
+                rows="5"></textarea>
+            </div>
+            <button id="btnCreate" type="submit" class="btn btn-primary" ng-click="createMovie()">Tạo phim</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      $(function () {
+        $('#datepicker').datetimepicker({
+          format: 'DD/MM/YYYY'
+        });
+      });
+    </script>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="/javascripts/shared/common.js"></script>
+  <script src="/javascripts/cinema/create.js"></script>
