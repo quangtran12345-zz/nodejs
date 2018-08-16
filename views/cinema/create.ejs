@@ -2,37 +2,43 @@
   <div ng-controller="CreateController">
     <div class="row">
       <div class="col-xs-12">
-        <h1 class="text-center">Tạo Phim Mới</h1>
+     
       </div>
     </div>
     <div class="container">
-      <div class="row">
-        <form>
-          <div class="col-md-5">
-          </div>
-          <div class="col-md-7">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Tên Bộ Phim</label>
-              <input ng-model="movieName" type="text" class="form-control" id="movieName" placeholder="Tên bộ phim">
+         <div id="content">
+           <label class="custom-file-upload">
+            <input id="inputFile" type="file">
+            <i class="fa fa-upload" aria-hidden="true"></i> Thêm hình
+          </label>
+            <button id="btnCreate" type="submit" class="btn btn-primary" ng-click="createMovie()">Tạo phim</button>          
+          <img id="movie-image" src="/images/movie-image.jpg">            
+         </div>       
+          <form>
+            <div id="movie-form" class="col-md-10 col-md-offset-1">
+                <h1 id="label" class="text-center">Tạo Phim Mới</h1>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Tên Bộ Phim</label>
+                <input ng-model="movieName" type="text" class="form-control" id="movieName" placeholder="Tên bộ phim">
+              </div>
+              <div class="form-group">
+                <label for="exampleSelect2">Thể loại phim:</label>
+                <select class="form-control" id="movieType" ng-model="movieType">
+                  <option ng-repeat="type in movieTypes">{{type}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="date">Thời gian phát hành</label>
+                <input type="text" class="form-control" id="datepicker">
+              </div>
+              <div class="form-group">
+                <label for="exampleTextarea">Nội dung mô tả</label>
+                <textarea ng-model="description" class="form-control" id="exampleTextarea" placeholder="Điền thông tin thêm về bộ phim, như diễn viên chính, nội dung bộ phim,..."
+                  rows="5"></textarea>
+              </div>                            
             </div>
-            <div class="form-group">
-              <label for="exampleSelect2">Thể loại phim:</label>
-              <select class="form-control" id="movieType" ng-model="movieType">
-                <option  ng-repeat="type in movieTypes">{{type}}</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="date">Thời gian phát hành</label>
-              <input type="text" class="form-control" id="datepicker">
-            </div>
-            <div class="form-group">
-              <label for="exampleTextarea">Nội dung mô tả</label>
-              <textarea ng-model="description" class="form-control" id="exampleTextarea" placeholder="Điền thông tin thêm về bộ phim, như diễn viên chính, nội dung bộ phim,..."
-                rows="5"></textarea>
-            </div>
-            <button id="btnCreate" type="submit" class="btn btn-primary" ng-click="createMovie()">Tạo phim</button>
-          </div>
-        </form>
+          </form>
+          
       </div>
     </div>
     <script>
