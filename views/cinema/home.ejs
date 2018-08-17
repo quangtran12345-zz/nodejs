@@ -3,23 +3,32 @@
         <div class="container-fluid">
             <div class="row">
 
-                <div ng-repeat="movie in movies" class=" col-md-4 col-sm-6 col-xs-12">
+                <div ng-repeat="movie in movies" class=" col-md-3 col-sm-6 col-xs-12">
                     <div class="item">
                         <div class="item-movie">
-                            <a ng-href="/detail/{{movie._id}}" type="button" class="btn-detail btn btn-primary">
-                                <i class="fa fa-info-circle"></i>
+                            <a ng-href="/detail/{{movie._id}}" class="btn-detail">
+                                <img class="img-cinema" src="/images/movie-image.jpg">
                             </a>
-                            <img src="/images/movie-image.jpg">
-                            <div class="about">
-                                <h2>{{movie.movieName}}</h2>
-                                <label class="date">
-                                    {{movie.publicDate | date: 'dd/MM/yyyy'}}
-                                </label>
-                                <p>
-                                    {{movie.description}}
-                                </p>
-                            </div>
 
+                            <div class="content">
+                                <h3 class="title">
+                                    <a ng-href="/detail/{{movie._id}}">{{movie.movieName}}</a>
+                                </h3>
+                                <p class="text-detail">
+                                    <span>
+                                        <strong>Thể loại: </strong>{{movie.movieType}}
+                                    </span>
+                                </p>
+                                <p class="text-detail">
+                                    <span>
+                                        <strong>Khởi chiếu: </strong>{{movie.publicDate | date: 'dd-MM-yyyy'}}
+                                    </span>
+                                </p>
+                                
+                            </div>
+                            <div class="btn-detail-second">
+                            <a type="button" class="detail-btn btn btn-success" ng-href="/detail/{{movie._id}}"><span><i class="fa fa-info-circle"></i><strong> CHI TIẾT</strong></span></a>
+                        </div>
                         </div>
                     </div>
                 </div>

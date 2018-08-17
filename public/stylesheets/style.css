@@ -59,23 +59,11 @@ a {
 }
 .item-movie img{
   max-width: 100%;
-  height: 300px;
+  height: 450px;
+  object-fit: cover;
 }
-.about{
-  transition: transform 1s;
-  color: #fff;
-  position: absolute;
-  left: 0px;
-  bottom: -8px;
-  padding: 20px;
-  width: 100%;
-  
-}
-.item-movie{
-  position: relative;
-  display: inline-grid;
-  overflow: hidden;
-}
+
+
 label.date{
   background-color: #fc6e51;
   color: #fbfbfb;
@@ -85,52 +73,59 @@ label.date{
   transition: opacity 1s, transform .50s;
   border-radius: 3px;
 }
-.about p{
-  margin-top: 15px;
-  opacity: 0;
-  transition: opacity 1s,transform .50s;
-  transform : translateY(40px) !important;
-  text-shadow : 0px 4px 13px rgba(0, 0, 0, 0.2);
-  font-size: 17px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  width: 100%;
-  white-space: nowrap;
-}
-.about h2{
-  transform : translateY(40px) !important;
-  transition: opacity 1s,transform .50s;  
-}
-.item-movie:hover p{
-  opacity: 1;
-  transition: opacity 1s, transform .50s;
-  transform : translateY(-15px) !important;
-}
-.item-movie:hover label{
-  transition: opacity 1s, transform .50s;
-  transform : translateY(-15px) !important;
-}
-.item-movie:hover .about{
-  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 1) 100%);
-  transition: transform 1s;
-}
-.item-movie:hover h2{
-  transition: opacity 1s, transform .50s;
-  transform : translateY(-15px) !important;
-}
 .item {
   margin-bottom: 25px;
 }
 .btn-detail{
-  float: right;
-  position: absolute;
-  right: 7px;
-  border-radius: 100% !important;
-  top: 5px;
+  border: 6px solid black;
+  display: inline-table;
+  transition: border 0.5s ease-out;
 }
 .item{
   position: relative;
 }
 .text-detail{
   font-size: 20px;
+  margin-bottom: 0px;
+}
+
+.title a {
+  color: black !important;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.content{
+  transition: color 0.5s ease-out;
+}
+.content a{
+  transition: color 0.5s ease-out;
+}
+.title a:hover{
+  text-decoration: none;
+}
+a.btn-detail:hover {
+  border: 6px solid #fc6e51;
+}
+a.btn-detail:hover + .content{
+  color: #fc6e51 !important;
+}
+a.btn-detail:hover + .content a{
+  color: #fc6e51 !important;
+}
+.detail-btn{
+  float: right;
+  width: 110px;  
+  background: #fc6e51 !important;
+  border: 1px solid #fc6e51 !important;
+ 
+}
+.content{
+  margin-bottom: 40px;
+}
+a.detail-btn.btn.btn-success {
+  margin-bottom: 30px;
+}
+a.detail-btn.btn.btn-success span{
+  font-size: 15px !important;  
 }
