@@ -10,5 +10,7 @@ router.get('/', function(req, res, next) {
 router.get('/create', function(req, res, next) {
   res.render('cinema/create', { title: 'Create Movie' });
 });
-
+router.get('/detail/:id', function(req, res, next) {
+  res.render('cinema/detail', { title: 'Detail' });
+});
 module.exports = router;

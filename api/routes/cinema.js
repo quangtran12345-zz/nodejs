@@ -27,5 +27,17 @@ router.post('/',async (req,res) => {
         })
     }
 });
+router.get('/:id',async (req, res) => {
+    try {
+       let cinema = await cinemaController.getCinemaById(req.params.id)
+       res.send({
+           cinema: cinema
+       })
+    } catch (error) {
+        res.send({
+            error : 'error'
+        })
+    }
+});
 
 module.exports = router;

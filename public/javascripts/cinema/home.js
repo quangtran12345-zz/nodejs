@@ -4,8 +4,7 @@ myApp.controller('HomeController', ['$scope', '$http', function ($scope, $http) 
       url: '/api/cinema',
       method: 'GET',      
     }).then(function (response) {  
-      $scope.movies = response.data.cinemas;
-      console.log(response.data);      
+      $scope.movies = response.data.cinemas;    
     },
       function (error) {
         console.log(error);

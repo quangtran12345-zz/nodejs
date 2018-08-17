@@ -6,14 +6,14 @@
                 <div ng-repeat="movie in movies" class=" col-md-4 col-sm-6 col-xs-12">
                     <div class="item">
                         <div class="item-movie">
-                            <button type="button" class="btn-detail btn btn-primary">
+                            <a ng-href="/detail/{{movie._id}}" type="button" class="btn-detail btn btn-primary">
                                 <i class="fa fa-info-circle"></i>
-                            </button>
+                            </a>
                             <img src="/images/movie-image.jpg">
                             <div class="about">
                                 <h2>{{movie.movieName}}</h2>
                                 <label class="date">
-                                    12/02/2018
+                                    {{movie.publicDate | date: 'dd/MM/yyyy'}}
                                 </label>
                                 <p>
                                     {{movie.description}}

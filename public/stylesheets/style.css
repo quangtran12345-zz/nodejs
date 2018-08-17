@@ -24,11 +24,12 @@ a {
 }
 .btn.btn-primary{  
   background: #fc6e51;
+  color: white;
 }
 .create-form-button{
   width: 150px;
   height: 50px;
-  font-size: 20px;
+  font-size: 20px !important;
   font-weight: 100;  
 }
 .btn.btn-primary:hover{
@@ -129,4 +130,7 @@ label.date{
 }
 .item{
   position: relative;
+}
+.text-detail{
+  font-size: 20px;
 }

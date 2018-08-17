@@ -8,7 +8,14 @@ const getCinemas = async function () {
         throw error
     }
 }
-
+const getCinemaById = async function (id) {
+    try {
+        let cinema = await Cinema.findById(id);
+        return cinema;
+    } catch (error) {       
+        throw error
+    }
+}
 const createCinema = async function (data) {
     try {
         let savedData = new Cinema(data);
@@ -20,5 +27,6 @@ const createCinema = async function (data) {
 }
 module.exports = {
     getCinemas: getCinemas,
-    createCinema : createCinema
+    createCinema: createCinema,
+    getCinemaById: getCinemaById
 }
