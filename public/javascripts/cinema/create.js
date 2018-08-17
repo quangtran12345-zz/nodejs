@@ -7,6 +7,7 @@ myApp.controller('CreateController', ['$scope', '$http', function ($scope, $http
       movieType: $scope.movieType,
       publicDate: common.stringToTimestamp($("#datepicker").data("date")),
       description: $scope.description,
+      
     }
     $http({
       url: '/api/cinema',
@@ -19,5 +20,12 @@ myApp.controller('CreateController', ['$scope', '$http', function ($scope, $http
         console.log(error);
       }
     );
+  }
+  $scope.addImage = function(){
+   var inputFile = document.getElementById("inputFile");
+   inputFile.click();
+  }
+  $scope.getImage = function(){
+      console.log(a);
   }
 }]);

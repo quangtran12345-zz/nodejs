@@ -1,4 +1,29 @@
 <% layout('../layout') -%>
-<div>
-    
-</div>
+    <div ng-controller="HomeController">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div ng-repeat="movie in movies" class=" col-md-4 col-sm-6 col-xs-12">
+                    <div class="item">
+                        <div class="item-movie">
+                            <button type="button" class="btn-detail btn btn-primary">
+                                <i class="fa fa-info-circle"></i>
+                            </button>
+                            <img src="/images/movie-image.jpg">
+                            <div class="about">
+                                <h2>{{movie.movieName}}</h2>
+                                <label class="date">
+                                    12/02/2018
+                                </label>
+                                <p>
+                                    {{movie.description}}
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/javascripts/cinema/home.js"></script>

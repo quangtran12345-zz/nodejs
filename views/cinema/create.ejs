@@ -1,17 +1,10 @@
 <% layout('../layout') -%>
   <div ng-controller="CreateController">
-    <div class="row">
-      <div class="col-xs-12">
-     
-      </div>
-    </div>
     <div class="container">
-         <div id="content">
-           <label class="custom-file-upload">
-            <input id="inputFile" type="file">
-            <i class="fa fa-upload" aria-hidden="true"></i> Thêm hình
-          </label>
-            <button id="btnCreate" type="submit" class="btn btn-primary" ng-click="createMovie()">Tạo phim</button>          
+         <div id="content">      
+            <input  id="inputFile" type="file" >          
+          <button class="create-form-button" id="btnAddImage" type="submit" class="btn btn-primary" ><i class="fa fa-upload" aria-hidden="true"></i> Thêm hình</button>          
+          <button class="create-form-button" id="btnCreate" type="submit" class="btn btn-primary" ng-click="createMovie()">Tạo phim</button>          
           <img id="movie-image" src="/images/movie-image.jpg">            
          </div>       
           <form>

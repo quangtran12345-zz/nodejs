@@ -22,16 +22,33 @@ a {
   border-color : #fc6e51 !important;
   box-shadow : inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(224, 98, 72, 0.6) !important;
 }
-#btnCreate{  
+.btn.btn-primary{  
   background: #fc6e51;
-  position: absolute;
+}
+.create-form-button{
   width: 150px;
   height: 50px;
   font-size: 20px;
-  right: 15px;
-  top: 15px;
   font-weight: 100;  
-  
+}
+.btn.btn-primary:hover{
+  background:#8e1c00 !important;
+}
+.btn.btn-primary:active{
+  background:#8e1c00 !important;
+}
+.btn.btn-primary:focus{
+  background:#8e1c00 !important;
+}
+#btnCreate{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+#btnAddImage{
+  position: absolute;
+  top: 5px;
+  left: 5px;
 }
 #content{
   position: relative;
@@ -39,21 +56,77 @@ a {
 #inputFile{
   display: none;
 }
-.custom-file-upload {
-  border: 1px solid #ccc;
-  font-size: 20px;
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
-  color: white;
-  background: #fc6e51;
-  height: 50px;
+.item-movie img{
+  max-width: 100%;
+  height: 300px;
+}
+.about{
+  transition: transform 1s;
+  color: #fff;
   position: absolute;
-  font-weight: 100;
-  border-radius: 4%;
-  width:150px;
-  top: 15px;
-  left: 15px;
-  border: none;
-  padding-top: 10px;
+  left: 0px;
+  bottom: -8px;
+  padding: 20px;
+  width: 100%;
+  
+}
+.item-movie{
+  position: relative;
+  display: inline-grid;
+  overflow: hidden;
+}
+label.date{
+  background-color: #fc6e51;
+  color: #fbfbfb;
+  padding: 5px 9px;
+  letter-spacing: 0.5px;
+  transform : translateY(40px) !important;
+  transition: opacity 1s, transform .50s;
+  border-radius: 3px;
+}
+.about p{
+  margin-top: 15px;
+  opacity: 0;
+  transition: opacity 1s,transform .50s;
+  transform : translateY(40px) !important;
+  text-shadow : 0px 4px 13px rgba(0, 0, 0, 0.2);
+  font-size: 17px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+}
+.about h2{
+  transform : translateY(40px) !important;
+  transition: opacity 1s,transform .50s;  
+}
+.item-movie:hover p{
+  opacity: 1;
+  transition: opacity 1s, transform .50s;
+  transform : translateY(-15px) !important;
+}
+.item-movie:hover label{
+  transition: opacity 1s, transform .50s;
+  transform : translateY(-15px) !important;
+}
+.item-movie:hover .about{
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 1) 100%);
+  transition: transform 1s;
+}
+.item-movie:hover h2{
+  transition: opacity 1s, transform .50s;
+  transform : translateY(-15px) !important;
+}
+.item {
+  margin-bottom: 25px;
+}
+.btn-detail{
+  float: right;
+  position: absolute;
+  right: 7px;
+  border-radius: 100% !important;
+  top: 5px;
+}
+.item{
+  position: relative;
 }
