@@ -1,47 +1,52 @@
 <% layout('../layout') -%>
   <div ng-controller="CreateController">
     <div class="container">
-         <div id="content">      
-            <input  id="inputFile" type="file" >          
-          <button id="btnAddImage" type="submit" class="create-form-button btn btn-primary" ng-click="addImage()" ><i class="fa fa-upload" aria-hidden="true"></i> Thêm hình</button>          
-          <button id="btnCreate" type="submit" class="create-form-button btn btn-primary" ng-click="createMovie()">Tạo phim</button>          
-          <img id="movie-image" src="/images/movie-image.jpg">            
-         </div>       
-          <form>
-            <div id="movie-form" class="col-md-10 col-md-offset-1">
-                <h1 id="label" class="text-center">Tạo Phim Mới</h1>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Tên Bộ Phim</label>
-                <input ng-model="movieName" type="text" class="form-control" id="movieName" placeholder="Tên bộ phim">
-              </div>
-              <div class="form-group">
-                <label for="exampleSelect2">Thể loại phim:</label>
-                <select class="form-control" id="movieType" ng-model="movieType">
-                  <option ng-repeat="type in movieTypes">{{type}}</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="date">Thời gian phát hành</label>
-                <input type="text" class="form-control" id="datepicker">
-              </div>
-              <div class="form-group">
-                <label for="exampleTextarea">Nội dung mô tả</label>
-                <textarea ng-model="description" class="form-control" id="exampleTextarea" placeholder="Điền thông tin thêm về bộ phim, như diễn viên chính, nội dung bộ phim,..."
-                  rows="5"></textarea>
-              </div>                            
-            </div>
-          </form>
-          
+      <div id="content">
+        <input id="inputFile" type="file" accept="image/x-png,image/jpeg">
+        <button id="btnAddImage" class="create-form-button btn btn-primary" ng-click="addImage()">
+          <i class="fa fa-upload" aria-hidden="true"></i> Thêm hình</button>
+        <button id="btnCreate" type="submit" class="create-form-button btn btn-primary" ng-click="createMovie()">Tạo phim</button>
+        <img id="movie-image" src="/images/movie-image.jpg">
       </div>
+      <form name="createForm" ng-validate="validationOptions">
+        <div id="movie-form" class="col-md-10 col-md-offset-1">
+          <h1 id="label" class="text-center">Tạo Phim Mới</h1>
+          <div class="form-group">
+            <label for="movieName">Tên Bộ Phim</label>
+            <input name="movieName" ng-model="movieName" type="text" class="form-control" id="movieName" placeholder="Tên bộ phim" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleSelect2">Thể loại phim:</label>
+            <select name="movieType" class="required form-control" id="movieType" ng-model="movieType">
+              <option value="" selected="">Thể loại phim</option>
+              <option ng-repeat="type in movieTypes">{{type}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="date">Thời gian phát hành</label>
+            <input type="text" class="form-control" id="datepicker">
+          </div>
+          <div class="form-group">
+            <label for="exampleTextarea">Nội dung mô tả</label>
+            <textarea name="description" ng-model="description" class="form-control" id="exampleTextarea" placeholder="Điền thông tin thêm về bộ phim, như diễn viên chính, nội dung bộ phim,..."
+              rows="5"></textarea>
+          </div>
+        </div>
+      </form>
+
     </div>
-    <script>
-      $(function () {
-        $('#datepicker').datetimepicker({
-          format: 'DD/MM/YYYY'
-        });
-      });
-    </script>
   </div>
+  </div>
+  <script src="/javascripts/shared/angular-validate.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
   <script src="/javascripts/shared/common.js"></script>
   <script src="/javascripts/cinema/create.js"></script>
+  <script>
+    $(function () {
+      $('#datepicker').datetimepicker({
+        format: 'DD/MM/YYYY',
+        defaultDate: new Date()
+      });
+    });
+  </script>

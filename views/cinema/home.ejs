@@ -7,7 +7,7 @@
                     <div class="item">
                         <div class="item-movie">
                             <a ng-href="/detail/{{movie._id}}" class="btn-detail">
-                                <img class="img-cinema" src="/images/movie-image.jpg">
+                                <img class="img-cinema" ng-src="{{movie.imgURL !== undefined ? movie.imgURL : tempImage }}">
                             </a>
 
                             <div class="content">

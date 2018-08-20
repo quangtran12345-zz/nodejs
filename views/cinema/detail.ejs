@@ -2,7 +2,7 @@
     <div ng-controller="DetailController">
         <div class="container">
             <div id="content">
-                <img id="movie-image" src="/images/movie-image.jpg">
+                <img id="movie-image" ng-src="{{movie.imgURL !== undefined ? movie.imgURL : tempImage }}">
             </div>
             <div id="movie-form" class="col-md-6 col-md-offset-3">
                 <h1 id="label" class="text-center">Chi tiết</h1>

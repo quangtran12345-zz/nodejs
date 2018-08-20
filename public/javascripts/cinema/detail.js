@@ -1,8 +1,8 @@
 var myApp = angular.module('Cinema', []);
-myApp.controller('DetailController', ['$scope', '$http', function ($scope, $http) {
+myApp.controller('DetailController', ['$scope', '$http', function ($scope, $http) {  
+  $scope.tempImage = '/images/movie-image.jpg';    
     let pathname = window.location.pathname;
     let _id = pathname.substr(pathname.lastIndexOf("/")+1);
-    console.log(_id);
     $http({
       url: `/api/cinema/${_id}`,
       method: 'GET',         

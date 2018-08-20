@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fileUpload = require('express-fileupload');
 const cinemaController = require('../controllers/cinemaController');
-var multipart = require('connect-multiparty');
-var multipartMiddleware = multipart();
+
 router.get('/',async (req, res) => {
     try {
        let cinemas = await cinemaController.getCinemas();
@@ -16,10 +15,23 @@ router.get('/',async (req, res) => {
         })
     }
 });
-router.post('/',multipartMiddleware,async (req,res) => {
-    console.log(req.body,req.files);
-    try {
-        let cinema = await cinemaController.createCinema(req.body);
+router.post('/',fileUpload(),async (req,res) => {
+    console.log(req.files.file);
+    let fileName = req.files.file.name;
+    let imageFile = req.files.file;   
+    imageFile.mv(__dirname + '/../../public/images/' + fileName,function(err){
+       if(err){
+        res.send({
+            error: err
+        })
+       }else{
+           console.log("uploaded");
+       }
+   });
+    try {                       
+        req.body.imgURL = `/images/${fileName}`;
+        console.log(req.body);
+        let cinema = await cinemaController.createCinema(req.body); 
         res.send({
             cinema: cinema
         })
