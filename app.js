@@ -7,8 +7,10 @@ var config = require('./config')
 const engine = require('ejs-locals')
 var mongoose = require('mongoose')
 require('./api/models/cinemaModel')
+require('./api/models/userModel')
 var indexRouter = require('./routes/index')
 var cinemaRouter = require('./api/routes/cinema')
+var authRouter = require('./api/routes/auth')
 var usersRouter = require('./routes/users')
 var app = express()
 // view engine setup
@@ -25,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/api/cinema', cinemaRouter)
-
+app.use('/api/auth', authRouter)
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404))

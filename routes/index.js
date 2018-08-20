@@ -13,4 +13,10 @@ router.get('/create', function (req, res, next) {
 router.get('/film/:link', function (req, res, next) {
   res.render('cinema/detail', { title: '' })
 })
+router.get('/register', function (req, res, next) {
+  res.render('cinema/register', { title: 'Register' })
+})
+router.get('/login', function (req, res, next) {
+  res.render('cinema/login', { title: 'Login' })
+})
 module.exports = router

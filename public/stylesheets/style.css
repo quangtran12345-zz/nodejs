@@ -193,3 +193,14 @@ span.brand {
 .parent{
   margin-bottom: 34px;
 }
+.sign-up-form{
+  border: 2px solid #fc6e51;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 70px;
+  margin-top: 70px;
+  overflow: hidden;
+}
+#register-button{
+ float: right;
+}
