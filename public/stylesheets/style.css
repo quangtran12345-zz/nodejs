@@ -130,8 +130,8 @@ a.btn-detail:hover + .content .detail-btn{
   margin-bottom: 40px;
 }
 a.detail-btn.btn.btn-success {
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 34px;
+  margin-bottom: 34px;
 }
 a.detail-btn.btn.btn-success span{
   font-size: 15px !important;  
@@ -181,4 +181,15 @@ span.brand {
 }
 .navbar-nav li {
   height: 66px;
+}
+.my-footer {  
+  padding: 13px;
+  color: white;
+  background-color:#fc6e51;    
+  height: 66px;
+  font-size: 20px;
+  line-height:33px; 
+}
+.parent{
+  margin-bottom: 34px;
 }

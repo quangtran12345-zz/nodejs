@@ -2,14 +2,12 @@
     <div ng-controller="HomeController">
         <div class="container-fluid">
             <div class="row">
-
                 <div ng-repeat="movie in movies" class=" col-md-3 col-sm-6 col-xs-12">
                     <div class="item">
                         <div class="item-movie">
                             <a ng-href="/film/{{movie.link}}" class="btn-detail">
                                 <img class="img-cinema" ng-src="{{movie.imgURL !== undefined ? movie.imgURL : tempImage }}">
                             </a>
-
                             <div class="content">
                                 <h3 class="title">
                                     <a ng-href="/film/{{movie.link}}">{{movie.movieName}}</a>
@@ -24,9 +22,10 @@
                                         <strong>Khởi chiếu: </strong>{{movie.publicDate | date: 'dd-MM-yyyy'}}
                                     </span>
                                 </p>
-                                <a type="button" class="detail-btn btn btn-success" ng-href="/film/{{movie.link}}"><span><i class="fa fa-info-circle"></i><strong> CHI TIẾT</strong></span></a>
+                                <a type="button" class="detail-btn btn btn-success" ng-href="/film/{{movie.link}}"><span><i
+                                            class="fa fa-info-circle"></i><strong> CHI TIẾT</strong></span></a>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
