@@ -1,5 +1,6 @@
 body {  
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding-top: 100px;
 }
 
 a {
@@ -7,6 +8,7 @@ a {
 }
 #movie-image{
   width: 100%;
+  height: 640px;
 }
 #movie-form{
   background: white;
@@ -109,25 +111,74 @@ a.btn-detail:hover {
 a.btn-detail:hover + .content{
   color: #fc6e51 !important;
 }
-a.btn-detail:hover + .content a{
+a.btn-detail:hover + .content h3 a{
   color: #fc6e51 !important;
+}
+
+a.btn-detail:hover + .content .detail-btn{
+  background: #fc6e51 !important;
+  border: 1px solid #fc6e51 !important;
 }
 .detail-btn{
   float: right;
   width: 110px;  
-  background: #fc6e51 !important;
-  border: 1px solid #fc6e51 !important;
- 
+  background: black !important;
+  border: 1px solid black !important;
+  transition: all 0.5s ease-out !important;
 }
 .content{
   margin-bottom: 40px;
 }
 a.detail-btn.btn.btn-success {
-  margin-bottom: 30px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 a.detail-btn.btn.btn-success span{
   font-size: 15px !important;  
 }
 label.error{
   color: #fc6e51;
+}
+
+
+
+.navbar .nav {
+  
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 15px;
+  align-items: center;
+}
+.my-container {
+  width: 100%;
+}
+.navbar-inverse .navbar-nav>li>a{
+  color: white !important;
+  font-weight: bold;
+  font-size: 20px;
+}
+header.navbar.navbar-inverse.navbar-fixed-top.bs-docs-nav{
+  height: 66px !important;
+  background: #fc6e51;
+  border: none;
+}
+.navbar .nav li a {
+  line-height: 33px !important;
+}
+#brand-img{
+  position: absolute;
+  top: -4px;
+}
+span.brand {
+  position:  absolute;
+  top: 24px;
+  left: 84px;
+  font-size: 40px;
+  color: white;
+} 
+.navbar-nav li:hover {
+  background: brown;
+}
+.navbar-nav li {
+  height: 66px;
 }

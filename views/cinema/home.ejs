@@ -6,13 +6,13 @@
                 <div ng-repeat="movie in movies" class=" col-md-3 col-sm-6 col-xs-12">
                     <div class="item">
                         <div class="item-movie">
-                            <a ng-href="/detail/{{movie._id}}" class="btn-detail">
+                            <a ng-href="/film/{{movie.link}}" class="btn-detail">
                                 <img class="img-cinema" ng-src="{{movie.imgURL !== undefined ? movie.imgURL : tempImage }}">
                             </a>
 
                             <div class="content">
                                 <h3 class="title">
-                                    <a ng-href="/detail/{{movie._id}}">{{movie.movieName}}</a>
+                                    <a ng-href="/film/{{movie.link}}">{{movie.movieName}}</a>
                                 </h3>
                                 <p class="text-detail">
                                     <span>
@@ -24,11 +24,9 @@
                                         <strong>Khởi chiếu: </strong>{{movie.publicDate | date: 'dd-MM-yyyy'}}
                                     </span>
                                 </p>
-                                
+                                <a type="button" class="detail-btn btn btn-success" ng-href="/film/{{movie.link}}"><span><i class="fa fa-info-circle"></i><strong> CHI TIẾT</strong></span></a>
                             </div>
-                            <div class="btn-detail-second">
-                            <a type="button" class="detail-btn btn btn-success" ng-href="/detail/{{movie._id}}"><span><i class="fa fa-info-circle"></i><strong> CHI TIẾT</strong></span></a>
-                        </div>
+                            
                         </div>
                     </div>
                 </div>

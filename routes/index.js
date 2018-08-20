@@ -1,16 +1,16 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
 
 /* GET home page. */
 
-router.get('/', function(req, res, next) {
-  res.render('cinema/home', { title: 'Ha Tin Cinema' });
-});
+router.get('/', function (req, res, next) {
+  res.render('cinema/home', { title: 'My Cinema' })
+})
 
-router.get('/create', function(req, res, next) {
-  res.render('cinema/create', { title: 'Create Movie' });
-});
-router.get('/detail/:id', function(req, res, next) {
-  res.render('cinema/detail', { title: 'Detail' });
-});
-module.exports = router;
+router.get('/create', function (req, res, next) {
+  res.render('cinema/create', { title: 'Create Movie' })
+})
+router.get('/film/:link', function (req, res, next) {
+  res.render('cinema/detail', { title: '' })
+})
+module.exports = router

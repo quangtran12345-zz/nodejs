@@ -4,20 +4,20 @@
             <div id="content">
                 <img id="movie-image" ng-src="{{movie.imgURL !== undefined ? movie.imgURL : tempImage }}">
             </div>
-            <div id="movie-form" class="col-md-6 col-md-offset-3">
-                <h1 id="label" class="text-center">Chi tiết</h1>
-               <p class="text-detail">
-                   <span><strong>Tên phim: </strong>{{movie.movieName}}</span>
-               </p>
-               <p class="text-detail">
-                    <span><strong>Thể loại phim: </strong>{{movie.movieType}}</span>
+            <div id="movie-form" class="col-md-10 col-md-offset-1">
+                <h1 id="label" class="text-center">{{movie.movieName}}</h1>
+                <p class="text-detail">
+                    <span>
+                        <strong>Thể loại phim: </strong>{{movie.movieType}}</span>
                 </p>
                 <p class="text-detail">
-                        <span><strong>Thời gian phát hành: </strong> {{movie.publicDate | date: 'dd/MM/yyyy'}}</span>
-                    </p>
-                    <p class="text-detail">
-                            <span><strong>Nội dung mô tả: </strong> {{movie.description}}</span>
-                    </p>
+                    <span>
+                        <strong>Thời gian phát hành: </strong> {{movie.publicDate | date: 'dd/MM/yyyy'}}</span>
+                </p>
+                <p class="text-detail">
+                    <span>
+                        <strong>Nội dung mô tả: </strong> {{movie.description}}</span>
+                </p>
             </div>
         </div>
     </div>
