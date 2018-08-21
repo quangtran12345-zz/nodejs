@@ -5,7 +5,7 @@ myApp.controller('DetailController', ['$scope', 'apiService', function ($scope, 
       common.setCookie('token', null)
       window.location.href = '/'
     })
-  }
+  }  
   let token = common.getCookie('token')
   if (token) {
     apiService.getUser({token: token})
@@ -17,6 +17,7 @@ myApp.controller('DetailController', ['$scope', 'apiService', function ($scope, 
   let pathname = window.location.pathname
   let link = pathname.substr(pathname.lastIndexOf('/') + 1)
   apiService.getFilm(link).then(function (response) {
+    console.log(response.data.cinema)
     $scope.movie = response.data.cinema
     document.title = $scope.movie.movieName
   },
