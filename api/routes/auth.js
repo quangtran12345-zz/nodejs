@@ -31,7 +31,7 @@ router.post('/signin', async (req, res, next) => {
 })
 router.post('/user', async (req, res) => {
   try {
-    let authenUser = await authController.authenWithToken(req.body)
+    let authenUser = await authController.authenWithToken(req.body.token)
     res.send(authenUser)
   } catch (error) {
     res.send({error: error})

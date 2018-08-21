@@ -16,10 +16,11 @@ const getCinemaByLink = async function (link) {
     throw error
   }
 }
-const createCinema = async function (data) {
+const createCinema = async function (data, userId) {
   try {
     data.createdDate = new Date()
     let savedData = new Cinema(data)
+    savedData.user = userId
     savedData = await savedData.save()
     let id = savedData.id.substr(savedData.id.length - 5)
     let convertedlink = common.convertToUsignedChar(savedData.movieName)

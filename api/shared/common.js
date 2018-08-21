@@ -16,7 +16,18 @@ const convertToUsignedChar = function (str) {
   str = str.replace(/Đ/g, 'D')
   return str.toLowerCase()
 }
+const parseCookies = function (request) {
+  let list = {}
+  let rc = request.headers.cookie
+
+  rc && rc.split(';').forEach(function (cookie) {
+    var parts = cookie.split('=')
+    list[parts.shift().trim()] = decodeURI(parts.join('='))
+  })
+  return list
+}
 
 module.exports = {
-  convertToUsignedChar: convertToUsignedChar
+  convertToUsignedChar: convertToUsignedChar,
+  parseCookies: parseCookies
 }

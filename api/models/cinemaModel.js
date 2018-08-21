@@ -7,7 +7,8 @@ var cinemaSchema = new Schema({
   publicDate: Number,
   description: String,
   imgURL: String,
-  createdDate: Number
+  createdDate: Number,
+  user: { type: Schema.Types.ObjectId, ref: 'User' }
 })
 var cinemas = mongoose.model('Cinema', cinemaSchema)
 module.exports = cinemas

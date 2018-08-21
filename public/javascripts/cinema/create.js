@@ -45,7 +45,9 @@ myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, 
       data.append('movieType', $scope.movieType)
       data.append('publicDate', common.stringToTimestamp($('#datepicker').data('date')))
       data.append('description', $scope.description)
+      data.append('user', $scope.user._id)
       data.append('file', $scope.file)
+      // data.append('user', )
       $.ajax('/api/cinema', {
         method: 'POST',
         data: data,

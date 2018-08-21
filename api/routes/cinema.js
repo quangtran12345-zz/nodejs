@@ -1,10 +1,11 @@
 const express = require('express')
-const cookie = require('cookie-parse')
+
 const router = express.Router()
 const fileUpload = require('express-fileupload')
 const cinemaController = require('../controllers/cinemaController')
 const authController = require('../controllers/authController')
 const responseStatus = require('../configs/responseStatus')
+const common = require('../shared/common')
 router.get('/', async (req, res) => {
   try {
     let cinemas = await cinemaController.getCinemas()
@@ -18,28 +19,31 @@ router.get('/', async (req, res) => {
   }
 })
 router.post('/', fileUpload(), async (req, res) => {
-  console.log(req.files.file)
   let fileName = req.files.file.name
-  let imageFile = req.files.file
-  imageFile.mv(__dirname + '/../../public/images/' + fileName, function (err) {
-    if (err) {
+  if (!fileName) {
+    res.status(400).send(responseStatus.Code400({ errorMessage: responseStatus.INVALID_REQUEST }))
+  } else {
+    let imageFile = req.files.file
+    imageFile.mv(__dirname + '/../../public/images/' + fileName, function (err) {
+      if (err) {
+        res.send({
+          error: err
+        })
+      }
+    })
+    try {
+      req.body.imgURL = `/images/${fileName}`
+      let parsedCookie = common.parseCookies(req)
+      let authenUser = await authController.authenWithToken(parsedCookie.token)
+      let cinema = await cinemaController.createCinema(req.body, authenUser._id)
       res.send({
-        error: err
+        cinema: cinema
       })
-    } else {
-      console.log('uploaded')
+    } catch (error) {
+      res.send({
+        error: error
+      })
     }
-  })
-  try {
-    req.body.imgURL = `/images/${fileName}`
-    let cinema = await cinemaController.createCinema(req.body)
-    res.send({
-      cinema: cinema
-    })
-  } catch (error) {
-    res.send({
-      error: error
-    })
   }
 })
 router.get('/:link', async (req, res) => {

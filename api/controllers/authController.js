@@ -36,8 +36,8 @@ const authen = async function (data) {
     })
   })
 }
-const authenWithToken = async function (data) {
-  let decoded = jwt.verify(data.token, configs.secret)
+const authenWithToken = async function (token) {
+  let decoded = jwt.verify(token, configs.secret)
   if (!decoded) {
     throw (responseStatus.Code400({
       errorMessage: responseStatus.INVALID_TOKEN
