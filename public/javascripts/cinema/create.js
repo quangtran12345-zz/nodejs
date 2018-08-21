@@ -1,5 +1,8 @@
 var myApp = angular.module('Cinema')
 myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, apiService) {
+  $scope.movieTypes = ['Hành Động', 'Kinh Dị', 'Tình Cảm']
+  $scope.formTitle = 'Tạo phim mới'
+  $scope.buttonTitle = 'Tạo phim'
   $scope.signout = function () {
     common.showConfirmBox('Bạn có thật sự muốn đăng xuất', function () {
       common.setCookie('token', null)
@@ -13,7 +16,6 @@ myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, 
         $scope.user = response.data
       })
   }
-  $scope.movieTypes = ['Hành Động', 'Kinh Dị', 'Tình Cảm']
   $scope.validationOptions = {
     rules: {
       movieName: {
