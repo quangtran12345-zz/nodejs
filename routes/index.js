@@ -11,7 +11,7 @@ router.get('/create', function (req, res, next) {
   res.render('cinema/create', { title: 'Create Movie' })
 })
 router.get('/film/:link', function (req, res, next) {
-  res.render('cinema/detail', { title: '' })
+  res.render('cinema/detail', { title: '', user: req.session.user })
 })
 router.get('/register', function (req, res, next) {
   res.render('cinema/register', { title: 'Register' })

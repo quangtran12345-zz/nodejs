@@ -1,5 +1,5 @@
-var myApp = angular.module('Cinema', ['ngValidate'])
-myApp.controller('RegisterController', ['$scope', '$http', function ($scope, $http) {
+var myApp = angular.module('Cinema')
+myApp.controller('RegisterController', ['$scope', 'apiService', function ($scope, apiService) {
   $scope.validationOptions = {
     rules: {
       username: {
@@ -41,14 +41,12 @@ myApp.controller('RegisterController', ['$scope', '$http', function ($scope, $ht
         password: $scope.password,
         email: $scope.email
       }
-      $http({
-        url: '/api/auth',
-        method: 'POST',
-        data: data
-      }).then(function (response) {
-        alert('Tài khoản đã được tạo thành công')
+      apiService.signup(data).then(function (response) {
+        if (response.status === 200) {
+          window.location.href = '/login'
+        }
       },
-      function (error) {            
+      function (error) {
         alert(error.data.errorMessage)
       }
       )

@@ -31,6 +31,7 @@ const createCinema = async function (data) {
     throw error
   }
 }
+
 module.exports = {
   getCinemas: getCinemas,
   createCinema: createCinema,

@@ -1,5 +1,18 @@
-var myApp = angular.module('Cinema', ['ngValidate'])
-myApp.controller('CreateController', ['$scope', '$http', function ($scope, $http) {
+var myApp = angular.module('Cinema')
+myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, apiService) {
+  $scope.signout = function () {
+    common.showConfirmBox('Bạn có thật sự muốn đăng xuất', function () {
+      common.setCookie('token', null)
+      window.location.href = '/'
+    })
+  }
+  let token = common.getCookie('token')
+  if (token) {
+    apiService.getUser({token: token})
+      .then(function (response) {
+        $scope.user = response.data
+      })
+  }
   $scope.movieTypes = ['Hành Động', 'Kinh Dị', 'Tình Cảm']
   $scope.validationOptions = {
     rules: {
@@ -40,14 +53,6 @@ myApp.controller('CreateController', ['$scope', '$http', function ($scope, $http
         contentType: false,
         success: function (data) {
           window.location.href = '/'
-          // if (filmId) {
-          //   $scope.notiMessage = 'Sửa phim thành công'
-          //   document.getElementById('SuccessDialog').style.display = 'block'
-          // } else {
-          //   $scope.notiMessage = 'Tạo phim thành công'
-          //   document.getElementById('SuccessDialog').style.display = 'block'
-          // }
-          // $scope.$apply()
         },
         error: function (err) {
           alert('Lỗi xin hãy thử lại')

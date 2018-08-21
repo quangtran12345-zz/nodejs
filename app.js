@@ -4,13 +4,16 @@ var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
 var config = require('./config')
+var passport = require('passport')
 const engine = require('ejs-locals')
+let session = require('express-session')
 var mongoose = require('mongoose')
+
 require('./api/models/cinemaModel')
 require('./api/models/userModel')
+var authentication = require('./api/routes/auth')
 var indexRouter = require('./routes/index')
 var cinemaRouter = require('./api/routes/cinema')
-var authRouter = require('./api/routes/auth')
 var usersRouter = require('./routes/users')
 var app = express()
 // view engine setup
@@ -19,6 +22,13 @@ app.set('view engine', 'ejs')
 app.engine('ejs', engine)
 mongoose.connect(config.getDbConnectionString(), { useNewUrlParser: true })
 app.use(logger('dev'))
+app.use(session({
+  secret: 'a very long long long key',
+  resave: true,
+  saveUninitialized: false,
+  cookie: { httpOnly: true }
+}))
+require('./api/configs/passport').createPassportConfig(app)
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
@@ -27,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/api/cinema', cinemaRouter)
-app.use('/api/auth', authRouter)
+app.use('/api/auth', authentication)
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404))

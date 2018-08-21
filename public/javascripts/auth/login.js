@@ -1,5 +1,5 @@
-var myApp = angular.module('Cinema', ['ngValidate'])
-myApp.controller('LoginController', ['$scope', '$http', function ($scope, $http) {
+var myApp = angular.module('Cinema')
+myApp.controller('LoginController', ['$scope', 'apiService', function ($scope, apiService) {
   $scope.validationOptions = {
     rules: {
       password: {
@@ -20,18 +20,18 @@ myApp.controller('LoginController', ['$scope', '$http', function ($scope, $http)
       }
     }
   }
-  $scope.createUser = function () {
+  $scope.login = function () {
     if ($scope.createForm.validate()) {
       let data = {
         email: $scope.email,
         password: $scope.password
       }
-      $http({
-        url: '/api/auth',
-        method: 'POST',
-        data: data
-      }).then(function (response) {
-        alert('Tài khoản đã được tạo thành công')
+      apiService.signin(data).then(function (response) {
+        console.log(response)
+        if (response.data.status === 200) {
+          common.setCookie('token', response.data.token, 1)
+          window.location.href = '/'
+        }
       },
       function (error) {
         alert(error.data.errorMessage)

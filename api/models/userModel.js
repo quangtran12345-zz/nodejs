@@ -9,7 +9,6 @@ var UserSchema = new mongoose.Schema({
   },
   username: {
     type: String,
-    unique: false,
     required: true,
     trim: true
   },
@@ -28,5 +27,34 @@ UserSchema.pre('save', function (next) {
     next()
   })
 })
+UserSchema.methods.authenticate = function (email, password, callback) {
+  User.findOne({ email: email })
+    .exec(function (err, user) {
+      if (err) {
+        return callback(err)
+      } else if (!user) {
+        var error = new Error('User not found.')
+        error.status = 401
+        return callback(error)
+      }
+      bcrypt.compare(password, user.password, function (err, result) {
+        if (err) {
+          return callback()
+        }
+        if (result === true) {
+          return callback(null, user)
+        } else {
+          return callback()
+        }
+      })
+    })
+}
+UserSchema.methods.authenticate = function (password) {
+  if (bcrypt.compareSync(password, this.password)) {
+    return true
+  } else {
+    return false
+  }
+}
 var User = mongoose.model('User', UserSchema)
 module.exports = User
