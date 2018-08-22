@@ -17,6 +17,8 @@ const createUser = async function (data) {
       }))
     }
     let savedUser = new User(data)
+    let newPassword = bcrypt.hashSync(data.password, 10)
+    savedUser.password = newPassword
     await savedUser.save()
     return savedUser
   } catch (error) {
@@ -83,7 +85,7 @@ const resetPassword = async function (token) {
   let user = await authenWithToken(token)
   console.log(user.password)
   if (user) {
-    newPassword = generatePassword(6)
+    newPassword = bcrypt.hashSync(generatePassword(6), 10)
     user.password = newPassword
     await user.save()
     return newPassword
@@ -93,12 +95,12 @@ const signUpForSocial = async function (newUser) {
   try {
     let user = new User(newUser)
     user = await user.save()
-    const token = jwt.sign({providerId: user.providerId}, configs.secret, {
+    const token = jwt.sign({providerId: user.email}, configs.secret, {
       expiresIn: configs.expireIn
     })
     return responseStatus.Code200({ user: user, token: token })
   } catch (error) {
-    return (error)
+    return error
   }
 }
 module.exports = {

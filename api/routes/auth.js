@@ -62,7 +62,7 @@ router.get('/facebook/callback', function (req, res, next) {
     if (err) {
       return res.send({ errorMessage: err })
     }
-    res.send({token: info})
+    res.render('cinema/create', { title: 'Edit', token: info.token })
   })(req, res, next)
 })
 module.exports = router

@@ -43,6 +43,7 @@
     <div ng-controller="HomeController">
         <div class="container-fluid">
             <div class="row">
+                    <input type="hidden" id="token" value='<%= token %>'/>
                 <div ng-repeat="movie in movies" class=" col-md-3 col-sm-6 col-xs-12">
                     <div class="item">
                         <div class="item-movie">
