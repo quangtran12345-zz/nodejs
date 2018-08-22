@@ -67,7 +67,7 @@ function createPassportConfig (app) {
           provider: 'facebook'
         }
         let dataReturn = await authController.signUpForSocial(newUser)
-        done(null, user, dataReturn)
+        done(null, user, newUser)
       }
     })
   }
