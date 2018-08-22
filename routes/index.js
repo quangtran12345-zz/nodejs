@@ -8,15 +8,21 @@ router.get('/', function (req, res, next) {
 })
 
 router.get('/create', function (req, res, next) {
-  res.render('cinema/create', { title: 'Create Movie' })
+  res.render('cinema/create', { title: 'Create Movie', filmId: '' })
 })
 router.get('/film/:link', function (req, res, next) {
-  res.render('cinema/detail', { title: '', user: req.session.user })
+  res.render('cinema/detail', { title: '' })
+})
+router.get('/film/:link/edit', function (req, res, next) {
+  res.render('cinema/create', { title: 'Edit', filmId: req.params.link })
 })
 router.get('/register', function (req, res, next) {
   res.render('cinema/register', { title: 'Register' })
 })
 router.get('/login', function (req, res, next) {
   res.render('cinema/login', { title: 'Login' })
+})
+router.get('/user/:id', function (req, res, next) {
+  res.render('cinema/profile', { title: 'Profile' })
 })
 module.exports = router

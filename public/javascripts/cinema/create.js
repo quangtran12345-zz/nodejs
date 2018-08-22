@@ -1,6 +1,41 @@
 var myApp = angular.module('Cinema')
 myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, apiService) {
+  $('#datepicker').datetimepicker({
+    format: 'DD/MM/YYYY',
+    date: new Date()
+  })
+  const postData = function () {
+    let data = new FormData()
+    if (filmId) {
+      data.append('id', $scope.movie._id)
+      data.append('imgURL', $scope.movie.imgURL)
+    }
+    data.append('movieName', $scope.movieName)
+    data.append('movieType', $scope.movieType)
+    data.append('publicDate', common.stringToTimestamp($('#datepicker').data('date')))
+    data.append('description', $scope.description)
+    data.append('user', $scope.user._id)
+    data.append('file', $scope.file)
+    // data.append('user', )
+    $.ajax('/api/cinema', {
+      method: 'POST',
+      data: data,
+      processData: false,
+      contentType: false,
+      success: function (data) {
+        if (filmId) {
+          window.location.href = `/film/${data.cinema.link}`
+        } else {
+          window.location.href = '/'
+        }
+      },
+      error: function (err) {
+        alert('Lỗi xin hãy thử lại')
+      }
+    })
+  }
   $scope.movieTypes = ['Hành Động', 'Kinh Dị', 'Tình Cảm']
+  $scope.movieType = $scope.movieTypes[0]
   $scope.formTitle = 'Tạo phim mới'
   $scope.buttonTitle = 'Tạo phim'
   $scope.signout = function () {
@@ -8,6 +43,26 @@ myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, 
       common.setCookie('token', null)
       window.location.href = '/'
     })
+  }
+  let filmId = $('#filmId').val()
+  if (filmId) {
+    apiService.getFilm(filmId).then(function (response) {
+      $scope.movie = response.data.cinema
+      $scope.movieName = response.data.cinema.movieName
+      $scope.description = response.data.cinema.description
+      $scope.movieType = response.data.cinema.movieType
+      $scope.formTitle = 'Sửa phim'
+      $scope.buttonTitle = 'Lưu phim'
+      $('#datepicker').data('DateTimePicker').destroy()
+      $('#datepicker').datetimepicker({
+        format: 'DD/MM/YYYY',
+        date: new Date(response.data.cinema.publicDate)
+      })
+    },
+    function (error) {
+      console.log(error)
+    }
+    )
   }
   let token = common.getCookie('token')
   if (token) {
@@ -42,26 +97,13 @@ myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, 
   }
   $scope.createMovie = function () {
     if ($scope.createForm.validate()) {
-      let data = new FormData()
-      data.append('movieName', $scope.movieName)
-      data.append('movieType', $scope.movieType)
-      data.append('publicDate', common.stringToTimestamp($('#datepicker').data('date')))
-      data.append('description', $scope.description)
-      data.append('user', $scope.user._id)
-      data.append('file', $scope.file)
-      // data.append('user', )
-      $.ajax('/api/cinema', {
-        method: 'POST',
-        data: data,
-        processData: false,
-        contentType: false,
-        success: function (data) {
-          window.location.href = '/'
-        },
-        error: function (err) {
-          alert('Lỗi xin hãy thử lại')
-        }
-      })
+      if (filmId) {
+        postData()
+      } else if ($('#inputFile').val() !== '') {
+        postData()
+      } else {
+        alert('Vui lòng chọn hình')
+      }
     } else {
       var elements = $scope.createForm.$$controls
       var invalidElements = elements.filter(function (el) {
@@ -77,7 +119,6 @@ myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, 
   }
   $('#inputFile').change(function (e) {
     $scope.file = e.target.files[0]
-    console.log($scope.file)
     $('#movie-image').attr('src', URL.createObjectURL($scope.file))
   })
 }])

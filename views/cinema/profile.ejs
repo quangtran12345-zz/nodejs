@@ -1,0 +1,56 @@
+<% layout('../layout') -%>
+    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner" ng-controller="ProfileController">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand">
+                    <img id="brand-img" width="66px;" src="/images/movie-icon.png" />
+                    <span class="brand">My<strong>Cinema</strong>
+                    </span>
+            </div>
+            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-show="user._id" ng-cloak>
+                        <a ng-href="/user/{{user._id}}">
+                            <i class="fa fa-user" aria-hidden="true"></i> {{user.username}}</a>
+                    </li>
+                    <li ng-show="user._id" ng-cloak>
+                        <a href="/create">
+                            <i class="fa fa-user-plus"></i> Tạo phim</a>
+                    </li>
+                    <li ng-show="user._id" ng-cloak>
+                        <a href="" ng-click="signout()">
+                            <i class="fa fa-sign-out"></i> Đăng xuất</a>
+                    </li>
+
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="login-container" class="parent" ng-controller="ProfileController">
+        <div class="container">
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <h1 class="text-center"><strong>Thông tin người dùng</strong></h1>
+                </div>             
+            </div>
+            <div class="row justify-content-center">
+                    <div class="col-md-4">
+                           <img width="200px" height="200px" src="/images/user-icon.png">
+                    </div>
+                    <div class="col-md-4">                           
+                     </div>
+                </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <script src="/javascripts/shared/angular-validate.js"></script>
+    <script src="/javascripts/shared/common.js"></script>
+    <script src="/javascripts/user/profile.js"></script>

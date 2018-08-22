@@ -17,22 +17,31 @@ const getCinemaByLink = async function (link) {
   }
 }
 const createCinema = async function (data, userId) {
-  try {
-    data.createdDate = new Date()
-    let savedData = new Cinema(data)
-    savedData.user = userId
-    savedData = await savedData.save()
-    let id = savedData.id.substr(savedData.id.length - 5)
-    let convertedlink = common.convertToUsignedChar(savedData.movieName)
-    let link = convertedlink.split(' ').join('-') + '-' + id
-    savedData.link = link
-    await savedData.save()
-    return savedData
+  let savedData
+  try {    
+    if (!data.id) {
+      data.createdDate = new Date()
+      savedData = new Cinema(data)
+      savedData.user = userId
+      savedData = await savedData.save()
+      let link = generateLink(savedData)
+      savedData.link = link
+      savedData = await savedData.save()
+    } else {      
+      data.link = generateLink(data)
+      savedData = await Cinema.findByIdAndUpdate(data.id, {$set: data})
+    }
+    return data
   } catch (error) {
     throw error
   }
 }
-
+const generateLink = function (data) {
+  let id = data.id.substr(data.id.length - 5)
+  let convertedlink = common.convertToUsignedChar(data.movieName)
+  let link = convertedlink.split(' ').join('-') + '-' + id
+  return link
+}
 module.exports = {
   getCinemas: getCinemas,
   createCinema: createCinema,

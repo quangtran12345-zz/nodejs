@@ -17,7 +17,7 @@
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">            
             <ul class="nav navbar-nav navbar-right">
                     <li ng-show="user._id" ng-cloak>
-                            <a href="#">
+                            <a ng-href="/user/{{user._id}}">
                                 <i class="fa fa-user" aria-hidden="true"></i> {{user.username}}</a>
                         </li>
                 <li ng-show="user._id" ng-cloak>
@@ -41,27 +41,27 @@
         </nav>
     </div>
 </header>
+
+<input type="hidden" id="filmId" value='<%= filmId %>'/>
   <div class="parent" ng-controller="CreateController">
     <div class="container">
       <div id="content">
         <input id="inputFile" type="file" accept="image/x-png,image/jpeg">
         <button id="btnAddImage" class="create-form-button btn btn-primary" ng-click="addImage()">
           <i class="fa fa-upload" aria-hidden="true"></i> Thêm hình</button>
-        <button id="btnCreate" type="submit" class="create-form-button btn btn-primary" ng-click="createMovie()">Tạo phim</button>
-        <img id="movie-image" src="/images/movie-image.jpg">
+        <button id="btnCreate" type="submit" class="create-form-button btn btn-primary" ng-click="createMovie()">{{buttonTitle}}</button>
+        <img ng-src="{{movie.imgURL}}" id="movie-image" src="/images/movie-image.jpg">
       </div>
       <form name="createForm" ng-validate="validationOptions">
         <div id="movie-form" class="col-md-10 col-md-offset-1">
-          <h1 id="label" class="text-center">Tạo Phim Mới</h1>
+          <h1 id="label" class="text-center">{{formTitle}}</h1>
           <div class="form-group">
             <label for="movieName">Tên Bộ Phim</label>
             <input name="movieName" ng-model="movieName" type="text" class="form-control" id="movieName" placeholder="Tên bộ phim" required>
           </div>
           <div class="form-group">
             <label for="exampleSelect2">Thể loại phim:</label>
-            <select name="movieType" class="required form-control" id="movieType" ng-model="movieType">
-              <option value="" selected="">Thể loại phim</option>
-              <option ng-repeat="type in movieTypes">{{type}}</option>
+            <select ng-options="movieType for movieType in movieTypes"  name="movieType" class="required form-control" id="movieType" ng-model="movieType">            
             </select>
           </div>
           <div class="form-group">
@@ -83,11 +83,3 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
   <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>  
   <script src="/javascripts/cinema/create.js"></script>
-  <script>
-    $(function () {
-      $('#datepicker').datetimepicker({
-        format: 'DD/MM/YYYY',
-        defaultDate: new Date()
-      });
-    });
-  </script>

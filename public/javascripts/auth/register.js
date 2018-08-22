@@ -2,7 +2,7 @@ var myApp = angular.module('Cinema')
 myApp.controller('RegisterController', ['$scope', 'apiService', function ($scope, apiService) {
   $scope.validationOptions = {
     rules: {
-      username: {
+      name: {
         required: true
       },
       password: {
@@ -18,7 +18,7 @@ myApp.controller('RegisterController', ['$scope', 'apiService', function ($scope
       }
     },
     messages: {
-      username: {
+      name: {
         required: 'Vui lòng nhập tên tài khoản'
       },
       email: {
@@ -43,7 +43,17 @@ myApp.controller('RegisterController', ['$scope', 'apiService', function ($scope
       }
       apiService.signup(data).then(function (response) {
         if (response.status === 200) {
-          window.location.href = '/login'
+          apiService.signin(data).then(function (response) {
+            console.log(response)
+            if (response.data.status === 200) {
+              common.setCookie('token', response.data.token, 1)
+              window.location.href = '/'
+            }
+          },
+          function (error) {
+            alert(error.data.errorMessage)
+          }
+          )
         }
       },
       function (error) {

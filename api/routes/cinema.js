@@ -19,10 +19,9 @@ router.get('/', async (req, res) => {
   }
 })
 router.post('/', fileUpload(), async (req, res) => {
-  let fileName = req.files.file.name
-  if (!fileName) {
-    res.status(400).send(responseStatus.Code400({ errorMessage: responseStatus.INVALID_REQUEST }))
-  } else {
+  let fileName
+  if (req.files) {
+    fileName = req.files.file.name
     let imageFile = req.files.file
     imageFile.mv(__dirname + '/../../public/images/' + fileName, function (err) {
       if (err) {
@@ -31,19 +30,21 @@ router.post('/', fileUpload(), async (req, res) => {
         })
       }
     })
-    try {
+  }
+  try {
+    if (fileName) {
       req.body.imgURL = `/images/${fileName}`
-      let parsedCookie = common.parseCookies(req)
-      let authenUser = await authController.authenWithToken(parsedCookie.token)
-      let cinema = await cinemaController.createCinema(req.body, authenUser._id)
-      res.send({
-        cinema: cinema
-      })
-    } catch (error) {
-      res.send({
-        error: error
-      })
     }
+    let parsedCookie = common.parseCookies(req)
+    let authenUser = await authController.authenWithToken(parsedCookie.token)
+    let cinema = await cinemaController.createCinema(req.body, authenUser._id)
+    res.send({
+      cinema: cinema
+    })
+  } catch (error) {
+    res.send({
+      error: error
+    })
   }
 })
 router.get('/:link', async (req, res) => {
