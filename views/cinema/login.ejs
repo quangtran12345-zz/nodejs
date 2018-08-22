@@ -55,19 +55,27 @@
                         <label for="pwd">Mật khẩu:</label>
                         <input name="password" ng-model="password" type="password" class="form-control" id="pwd" placeholder="Mật khẩu">
                     </div>
-
-                    <span><a data-toggle="modal" data-target="#myModal" class="forgot-link" href="#">Quên mật khẩu ?</a></span>
-                    <button type="submit" ng-click="login()" id="register-button" class="create-form-button btn btn-primary">Đăng
-                        nhập
-                    </button>
-                    <div>
-                            <a href="https://cinema-hatin.herokuapp.com/api/auth/facebook" class="loginBtn loginBtn--facebook">
-                                    Login with Facebook
-                            </a>
-                                <a type="button" href="/api/auth/google" class="loginBtn loginBtn--google">
-                                    Login with Google
-                                </a>
+                    <div class="row">
+                        <div class="col-md-6"><a data-toggle="modal" data-target="#myModal" class="forgot-link" href="#">Quên
+                                mật khẩu ?</a></div>
+                        <button type="submit" ng-click="login()" id="register-button" class="btn-login create-form-button btn btn-primary">Đăng
+                            nhập
+                        </button>
                     </div>
+                    <hr>
+                    <div class="row external-login-content">
+                        <div class="col-md-6">
+                            <a href="/api/auth/google" class="btn btn-block btn-social btn-lg btn-google">
+                                <span class="fa fa-google"></span> Google
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="/api/auth/facebook" class="btn btn-block btn-social btn-lg btn-facebook">
+                                <span class="fa fa-facebook"></span> Facebook
+                            </a>
+                        </div>
+                    </div>
+
                 </form>
             </div>
         </div>

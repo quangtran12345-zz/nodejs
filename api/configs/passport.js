@@ -74,17 +74,17 @@ function createPassportConfig (app) {
   ))
 
   passport.use(new GoogleStrategy(
+    //https://cinema-hatin.herokuapp.com/api/auth/google/callback
     {
       clientID: '337170737207-1lfn8hg9cmsltevtfucdeo0i1876av0t.apps.googleusercontent.com',
       clientSecret: 'O2QSiIHJ0uIuyIS6h5lo9IFx',
-      callbackURL: 'https://cinema-hatin.herokuapp.com/api/auth/google/callback'
+      callbackURL: 'http://localhost:3000/api/auth/google/callback'
     },
-    function (req, accessToken, refreshToken, profile, done) {
-      console.log(profile)
+    function (req, accessToken, refreshToken, profile, done) {      
       User.findOne({ providerId: profile.id }, async function (err, user) {
         if (err) { return done(err) }
         if (user) {
-          var token = jwt.sign({ email: profile.email }, config.secret, {
+          var token = jwt.sign({ email: profile.emails[0].value }, config.secret, {
             expiresIn: config.expireIn
           })
           return done(null, true, {
