@@ -10,6 +10,7 @@ myApp.controller('HomeController', ['$scope', 'apiService', function ($scope, ap
   let token = common.getCookie('token')
   if (token) {
     token = $('#token').val()
+    common.setCookie('token', token)
     apiService.getUser({token: token})
       .then(function (response) {
         $scope.user = response.data
