@@ -73,7 +73,7 @@ function createPassportConfig (app) {
   }
   ))
 
-  passport.use(new GoogleStrategy(    
+  passport.use(new GoogleStrategy(
     {
       clientID: '337170737207-1lfn8hg9cmsltevtfucdeo0i1876av0t.apps.googleusercontent.com',
       clientSecret: 'O2QSiIHJ0uIuyIS6h5lo9IFx',
