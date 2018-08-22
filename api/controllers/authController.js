@@ -96,7 +96,7 @@ const signUpForSocial = async function (newUser) {
     const token = jwt.sign({providerId: user.providerId}, configs.secret, {
       expiresIn: configs.expireIn
     })
-    return (responseStatus.Code200({ user: user, token: token }))
+    return responseStatus.Code200({ user: user, token: token })
   } catch (error) {
     return (error)
   }
