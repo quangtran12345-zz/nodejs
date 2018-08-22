@@ -65,4 +65,15 @@ router.get('/facebook/callback', function (req, res, next) {
     res.render('cinema/home', { title: 'Home', token: info.token })
   })(req, res, next)
 })
+router.get('/google', passport.authenticate('google', { scope:
+  [ 'https://www.googleapis.com/auth/plus.login',
+    'https://www.googleapis.com/auth/plus.profile.emails.read' ] }))
+router.get('/google/callback', function (req, res, next) {
+  passport.authenticate('google', function (err, user, info) {
+    if (err) {
+      return res.send({ errorMessage: err })
+    }
+    res.render('cinema/home', { title: 'Home', token: info.token })
+  })(req, res, next)
+})
 module.exports = router

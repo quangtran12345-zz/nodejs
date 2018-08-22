@@ -73,10 +73,10 @@ function createPassportConfig (app) {
   }
   ))
 
-  passport.use(new GoogleStrategy(
+  passport.use(new GoogleStrategy(    
     {
-      clientID: '699972729999-6bjof61q477vviql3avqr7cbra84ruus.apps.googleusercontent.com',
-      clientSecret: 'A2s5FMJX0HHVLzgGzlRG12wh',
+      clientID: '337170737207-1lfn8hg9cmsltevtfucdeo0i1876av0t.apps.googleusercontent.com',
+      clientSecret: 'O2QSiIHJ0uIuyIS6h5lo9IFx',
       callbackURL: 'https://cinema-hatin.herokuapp.com/api/auth/google/callback'
     },
     function (req, accessToken, refreshToken, profile, done) {
