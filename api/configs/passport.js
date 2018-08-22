@@ -41,9 +41,9 @@ function createPassportConfig (app) {
       })
     }))
   passport.use(new FacebookStrategy({
-    clientID: '893876184132708',
-    clientSecret: '1250f3ec2316b80e5719aa2791ba657f',
-    callbackURL: 'https://cinema-web-training.herokuapp.com/api/auth/facebook/callback',
+    clientID: '1288207564648421',
+    clientSecret: '22a97ac83226750402b0841565120843',
+    callbackURL: 'https://cinema-hatin.herokuapp.com/api/auth/facebook/callback'
   },
   function (accessToken, refreshToken, profile, done) {
     console.log(profile)
@@ -60,7 +60,7 @@ function createPassportConfig (app) {
       }
       if (!user) {
         let newUser = {
-          name: profile.displayName,
+          username: profile.displayName,
           email: '',
           providerId: profile.id,
           avatarURL: '',
@@ -77,7 +77,7 @@ function createPassportConfig (app) {
     {
       clientID: '699972729999-6bjof61q477vviql3avqr7cbra84ruus.apps.googleusercontent.com',
       clientSecret: 'A2s5FMJX0HHVLzgGzlRG12wh',
-      callbackURL: 'https://cinema-web-training.herokuapp.com/api/auth/google/callback'
+      callbackURL: 'https://cinema-hatin.herokuapp.com/api/auth/google/callback'
     },
     function (req, accessToken, refreshToken, profile, done) {
       console.log(profile)
@@ -94,7 +94,7 @@ function createPassportConfig (app) {
         }
         if (!user) {
           let newUser = {
-            name: profile.displayName,
+            username: profile.displayName,
             email: profile.emails[0].value,
             providerId: profile.id,
             avatarURL: '',

@@ -43,6 +43,7 @@
     <div class="parent" ng-controller="DetailController">
         <div class="container">
             <div id="content">
+                <a id="btnCreate" ng-href="/film/{{movie.link}}/edit" ng-show="movie.user === user._id" type="submit" id="edit-button" class="fix-line-height create-form-button btn btn-primary">Sửa</a>
                 <img id="movie-image" ng-src="{{movie.imgURL !== undefined ? movie.imgURL : tempImage }}">
             </div>
             <div id="movie-form" class="col-md-10 col-md-offset-1">
@@ -58,8 +59,7 @@
                 <p class="text-detail">
                     <span>
                         <strong>Nội dung mô tả: </strong> {{movie.description}}</span>
-                </p>
-                <a ng-href="/film/{{movie.link}}/edit" ng-show="movie.user === user._id" type="submit" id="edit-button" class="create-form-button btn btn-primary">Sửa</a>
+                </p>                
             </div>
         </div>
     </div>

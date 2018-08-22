@@ -20,8 +20,8 @@ angular.module('Cinema', ['ngValidate']).factory('apiService', ['$http', functio
     editInfo: function (id, data) {
       return $http.put('/api/user/' + id, data)
     },
-    changePassword: function (id, data) {
-      return $http.put('/api/user/' + id + '/change-password', data)
+    forgotPassword: function (data) {
+      return $http.post('/api/auth/forgot-password', data)
     }
   }
 }])

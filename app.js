@@ -8,7 +8,6 @@ var passport = require('passport')
 const engine = require('ejs-locals')
 let session = require('express-session')
 var mongoose = require('mongoose')
-
 require('./api/models/cinemaModel')
 require('./api/models/userModel')
 var authentication = require('./api/routes/auth')
@@ -34,6 +33,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
 app.use('/api/cinema', cinemaRouter)

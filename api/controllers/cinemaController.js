@@ -18,7 +18,7 @@ const getCinemaByLink = async function (link) {
 }
 const createCinema = async function (data, userId) {
   let savedData
-  try {    
+  try {
     if (!data.id) {
       data.createdDate = new Date()
       savedData = new Cinema(data)
@@ -27,7 +27,7 @@ const createCinema = async function (data, userId) {
       let link = generateLink(savedData)
       savedData.link = link
       savedData = await savedData.save()
-    } else {      
+    } else {
       data.link = generateLink(data)
       savedData = await Cinema.findByIdAndUpdate(data.id, {$set: data})
     }

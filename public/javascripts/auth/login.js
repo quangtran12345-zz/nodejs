@@ -20,6 +20,26 @@ myApp.controller('LoginController', ['$scope', 'apiService', function ($scope, a
       }
     }
   }
+  $scope.forgotPassword = function () {
+    if ($scope.emailForm.validate()) {
+      let data = {email: $scope.confirmEmail}
+      apiService.forgotPassword(data).then(function (response) {
+        console.log(response)
+        if (response.data.status === 200) {
+          alert(response.data.message)
+        }
+      }, function (error) {
+        alert(error.data.errorMessage)
+      })
+    } else {
+      var elements = $scope.emailForm.$$controls
+      var invalidElements = elements.filter(function (el) {
+        return el.$viewValue === undefined || el.$viewValue === ''
+      })
+      var fisrtInvalidElement = invalidElements[0]
+      fisrtInvalidElement.$$element.focus()
+    }
+  }
   $scope.login = function () {
     if ($scope.createForm.validate()) {
       let data = {

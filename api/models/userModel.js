@@ -15,6 +15,15 @@ var UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  providerId: {
+    type: String
+  },
+  avatarURL: {
+    type: String
+  },
+  provider: {
+    type: String
   }
 })
 UserSchema.pre('save', function (next) {

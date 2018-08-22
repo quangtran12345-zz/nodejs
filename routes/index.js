@@ -25,4 +25,5 @@ router.get('/login', function (req, res, next) {
 router.get('/user/:id', function (req, res, next) {
   res.render('cinema/profile', { title: 'Profile' })
 })
+
 module.exports = router

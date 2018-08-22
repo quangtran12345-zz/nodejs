@@ -1,7 +1,12 @@
 const mongoose = require('mongoose')
 const User = mongoose.model('User')
-const configs = require('../configs/config')
 const jwt = require('jsonwebtoken')
+const ejs = require('ejs')
+const bcrypt = require('bcrypt')
+const generatePassword = require('password-generator')
+const smtpTransport = require('nodemailer-smtp-transport')
+const nodemailer = require('nodemailer')
+const configs = require('../configs/config')
 const responseStatus = require('../configs/responseStatus')
 const createUser = async function (data) {
   try {
@@ -47,8 +52,60 @@ const authenWithToken = async function (token) {
     return user
   }
 }
+const sendResetPasword = async function (req) {
+  let user = await User.findOne({email: req.body.email})
+  if (!user) {
+    throw (responseStatus.Code400({errorMessage: 'Không tìm thấy tài khoản. Vui lòng kiểm tra lại'}))
+  }
+  let token = jwt.sign({ email: req.body.email }, configs.secret, {
+    expiresIn: Date.now() + 3600000
+  })
+  var transporter = nodemailer.createTransport(smtpTransport({
+    service: 'gmail',
+    auth: {
+      user: configs.email,
+      pass: configs.password
+    }
+  }))
+  var mailOptions = {
+    to: req.body.email,
+    from: 'mycinema@demo.com',
+    subject: 'MyCinema - Thay đổi mật khẩu',
+    text: 'Chúng tôi đã thay đổi mật khẩu của bạn\n\n' +
+    'Hãy bấm vào đường link dưới đây để hoàn tất việc lấy lại mật khẩu của bạn\n\n' +
+    'http://' + req.headers.host + '/api/auth/reset/' + token + '\n\n' +
+    'Nếu bạn không yêu cầu thay đổi này, xin hãy bỏ qua thư này '
+  }
+  return transporter.sendMail(mailOptions)
+}
+const resetPassword = async function (token) {
+  let newPassword
+  let user = await authenWithToken(token)
+  console.log(user.password)
+  if (user) {
+    newPassword = generatePassword(6)
+    user.password = newPassword
+    await user.save()
+    return newPassword
+  }
+}
+const signUpForSocial = async function (newUser) {
+  try {
+    let user = new User(newUser)
+    user = await user.save()
+    const token = jwt.sign({providerId: user.providerId}, configs.secret, {
+      expiresIn: configs.expireIn
+    })
+    return (responseStatus.Code200({ user: user, token: token }))
+  } catch (error) {
+    return (error)
+  }
+}
 module.exports = {
   createUser: createUser,
   authen: authen,
-  authenWithToken: authenWithToken
+  authenWithToken: authenWithToken,
+  sendResetPasword: sendResetPasword,
+  resetPassword: resetPassword,
+  signUpForSocial: signUpForSocial
 }
