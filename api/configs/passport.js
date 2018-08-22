@@ -61,7 +61,7 @@ function createPassportConfig (app) {
       if (!user) {
         let newUser = {
           username: profile.displayName,
-          email: profile.id + '@gmail.com',
+          email: profile.id + '@facebook.com',
           providerId: profile.id,
           avatarURL: '',
           provider: 'facebook'
