@@ -50,7 +50,7 @@ function createPassportConfig (app) {
     User.findOne({ providerId: profile.id }, async function (err, user) {
       if (err) { return done(err) }
       if (user) {
-        var token = jwt.sign({ providerId: profile.id }, config.secret, {
+        var token = jwt.sign({ email: profile.id + '@facebook.com' }, config.secret, {
           expiresIn: config.expireIn
         })
         return done(null, true, {
@@ -67,7 +67,7 @@ function createPassportConfig (app) {
           provider: 'facebook'
         }
         let dataReturn = await authController.signUpForSocial(newUser)
-        done(null, user, newUser)
+        done(null, user, dataReturn)
       }
     })
   }
@@ -84,7 +84,7 @@ function createPassportConfig (app) {
       User.findOne({ providerId: profile.id }, async function (err, user) {
         if (err) { return done(err) }
         if (user) {
-          var token = jwt.sign({ providerId: profile.id }, config.secret, {
+          var token = jwt.sign({ email: profile.email }, config.secret, {
             expiresIn: config.expireIn
           })
           return done(null, true, {

@@ -95,7 +95,7 @@ const signUpForSocial = async function (newUser) {
   try {
     let user = new User(newUser)
     user = await user.save()
-    const token = jwt.sign({email: user.email}, configs.secret, {
+    let token = jwt.sign({email: user.email}, configs.secret, {
       expiresIn: configs.expireIn
     })
     return responseStatus.Code200({ user: user, token: token })
