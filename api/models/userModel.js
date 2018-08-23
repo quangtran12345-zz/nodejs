@@ -23,18 +23,11 @@ var UserSchema = new mongoose.Schema({
   },
   provider: {
     type: String
+  },
+  userLink: {
+    type: String
   }
 })
-// UserSchema.pre('save', function (next) {
-//   var user = this
-//   bcrypt.hash(user.password, 10, function (err, hash) {
-//     if (err) {
-//       return next(err)
-//     }
-//     user.password = hash
-//     next()
-//   })
-// })
 UserSchema.methods.authenticate = function (email, password, callback) {
   User.findOne({ email: email })
     .exec(function (err, user) {

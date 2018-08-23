@@ -17,12 +17,12 @@
             <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                 <ul class="nav navbar-nav navbar-right">
                     <li h ng-show="user._id" ng-cloak>
-                        <a ng-href="/user/{{user._id}}">
-                            <i class="fa fa-user" aria-hidden="true"></i> {{user.username}}</a>
+                        <a ng-href="/user/{{user.userLink}}">
+                            <img id="avatar" width="40px" height="40px" ng-src="{{user.avatarURL}}" src="/images/user-icon.png"> {{user.username}}</a>
                     </li>
                     <li ng-show="user._id" ng-cloak>
                         <a href="/create">
-                            <i class="fa fa-user-plus"></i> Tạo phim</a>
+                            <i class="fa fa-plus"></i> Tạo phim</a>
                     </li>
                     <li ng-show="!user._id" ng-cloak>
                         <a href="/register">
@@ -66,6 +66,11 @@
                                         <strong>Khởi chiếu: </strong>{{movie.publicDate | date: 'dd-MM-yyyy'}}
                                     </span>
                                 </p>
+                                <p class="text-detail">
+                                        <span>
+                                            <strong>Người tạo: </strong>{{movie.user.username}}
+                                        </span>
+                                    </p>
                                 <a type="button" class="detail-btn btn btn-success" ng-href="/film/{{movie.link}}"><span><i
                                             class="fa fa-info-circle"></i><strong> CHI TIẾT</strong></span></a>
                             </div>

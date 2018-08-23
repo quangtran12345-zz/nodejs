@@ -23,6 +23,7 @@ const updateUser = async function (data) {
     throw error
   }
 }
+
 module.exports = {
   addImage: addImage,
   updateUser: updateUser

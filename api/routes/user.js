@@ -2,6 +2,22 @@ const express = require('express')
 const router = express.Router()
 const fileUpload = require('express-fileupload')
 const userController = require('../controllers/userController')
+const authController = require('../controllers/authController')
+const responseStatus = require('../configs/responseStatus')
+const checkAuthentication = function (req, res, next) {
+  let token = cookie.parse(req.body)
+  if (token) {
+    authController.authenWithToken(token)
+      .then(() => {
+        return next()
+      })
+      .catch(error => {
+        res.status(error.status).send(error)
+      })
+  } else {
+    res.status(401).send(responseStatus.Code401({ errorMessage: responseStatus.INVALID_REQUEST }))
+  }
+}
 router.post('/avatar', fileUpload(), async (req, res) => {
   let fileName
   if (req.files) {
@@ -25,7 +41,7 @@ router.post('/avatar', fileUpload(), async (req, res) => {
     })
   }
 })
-router.post('/', async (req, res) => {
+router.post('/', checkAuthentication, async (req, res) => {
   try {
     let savedData = await userController.updateUser(req.body)
     res.send({user: savedData})
@@ -35,4 +51,5 @@ router.post('/', async (req, res) => {
     })
   }
 })
+
 module.exports = router

@@ -31,6 +31,17 @@ img{
   background: #fc6e51;
   color: white;
 }
+.btn.btn-danger{  
+  background: #ad1919;
+  color: white;
+  border: 1px solid black
+}
+button#btnChangeImage {
+  position:  absolute;
+  bottom: 170px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .create-form-button{
   width: 150px;
   height: 50px;
@@ -46,6 +57,16 @@ img{
 .btn.btn-primary:focus{
   background:#8e1c00 !important;
 }
+.btn.btn-danger:hover{
+  background:#8e1c00 !important;
+}
+.btn.btn-danger:active{
+  background:#8e1c00 !important;
+}
+.btn.btn-danger:focus{
+  background:#8e1c00 !important;
+}
+
 #btnCreate{
   position: absolute;
   top: 5px;
@@ -268,4 +289,7 @@ a.loginBtn{
   position: absolute;
   top: 5px;
   right: 5px;
+}
+#avatar{
+  border-radius: 50%
 }

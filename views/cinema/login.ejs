@@ -15,23 +15,15 @@
                     </span>
             </div>
             <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-                <ul class="nav navbar-nav navbar-right">
-                    <li ng-show="user._id" ng-cloak>
-                        <a href="/user/{{user._id}}">
-                            <i class="fa fa-user" aria-hidden="true"></i> {{user.username}}</a>
-                    </li>
+                <ul class="nav navbar-nav navbar-right">                  
                     <li ng-show="user._id" ng-cloak>
                         <a href="/create">
-                            <i class="fa fa-user-plus"></i> Tạo phim</a>
+                            <i class="fa fa-plus"></i> Tạo phim</a>
                     </li>
                     <li ng-show="!user._id" ng-cloak>
                         <a href="/register">
                             <i class="fa fa-user-plus"></i> Đăng ký</a>
-                    </li>
-                    <li ng-show="user._id" ng-cloak>
-                        <a href="" ng-click="signout()">
-                            <i class="fa fa-sign-out"></i> Đăng xuất</a>
-                    </li>
+                    </li>              
                     <li ng-show="!user._id" ng-cloak>
                         <a href="/login">
                             <i class="fa fa-sign-in"></i> Đăng nhập</a>

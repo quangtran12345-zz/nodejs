@@ -50,7 +50,8 @@ function createPassportConfig (app) {
     User.findOne({ providerId: profile.id }, async function (err, user) {
       if (err) { return done(err) }
       if (user) {
-        var token = jwt.sign({ email: profile.id + '@facebook.com' }, config.secret, {
+        // email: profile + '@facebook.com'
+        var token = jwt.sign({ email: profile }, config.secret, {
           expiresIn: config.expireIn
         })
         return done(null, true, {
@@ -74,13 +75,13 @@ function createPassportConfig (app) {
   ))
 
   passport.use(new GoogleStrategy(
-    //https://cinema-hatin.herokuapp.com/api/auth/google/callback
+    // https://cinema-hatin.herokuapp.com/api/auth/google/callback
     {
       clientID: '337170737207-1lfn8hg9cmsltevtfucdeo0i1876av0t.apps.googleusercontent.com',
       clientSecret: 'O2QSiIHJ0uIuyIS6h5lo9IFx',
-      callbackURL: 'https://cinema-hatin.herokuapp.com/api/auth/google/callback'
+      callbackURL: 'http://localhost:3000/api/auth/google/callback'
     },
-    function (req, accessToken, refreshToken, profile, done) {      
+    function (req, accessToken, refreshToken, profile, done) {
       User.findOne({ providerId: profile.id }, async function (err, user) {
         if (err) { return done(err) }
         if (user) {
@@ -97,7 +98,7 @@ function createPassportConfig (app) {
             username: profile.displayName,
             email: profile.emails[0].value,
             providerId: profile.id,
-            avatarURL: '',
+            avatarURL: profile.image.url,
             provider: 'google'
           }
           let dataReturn = await authController.signUpForSocial(newUser)

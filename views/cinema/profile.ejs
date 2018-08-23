@@ -1,5 +1,5 @@
 <% layout('../layout') -%>
-<div class="loader"></div>
+    <div class="loader"></div>
     <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner" ng-controller="ProfileController">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -17,12 +17,12 @@
             <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                 <ul class="nav navbar-nav navbar-right">
                     <li ng-show="user._id" ng-cloak>
-                        <a ng-href="/user/{{user._id}}">
-                            <i class="fa fa-user" aria-hidden="true"></i> {{user.username}}</a>
+                        <a ng-href="/user/{{user.userLink}}">
+                            <img id="avatar" width="34px" height="34px" ng-src="{{user.avatarURL}}" src="/images/user-icon.png"> {{user.username}}</a>
                     </li>
                     <li ng-show="user._id" ng-cloak>
                         <a href="/create">
-                            <i class="fa fa-user-plus"></i> Tạo phim</a>
+                            <i class="fa fa-plus"></i> Tạo phim</a>
                     </li>
                     <li ng-show="user._id" ng-cloak>
                         <a href="" ng-click="signout()">
@@ -37,10 +37,9 @@
     <div id="login-container" class="parent" ng-controller="ProfileController">
         <div class="container">
             <div class="row">
-                <div id="avatar-form" class="col-md-8 col-md-offset-2 text-center">                    
-                    <button id="btnAddImage" class="create-form-button btn btn-primary" ng-click="hideInput()">Hủy</button>
-                    <button id="btnCreate" type="submit" class="create-form-button btn btn-primary" ng-click="showInput()">Sửa</button>
-                    <img id="user-avatar" ng-src="{{user.avatarURL}}" width="200px" height="200px" src="/images/user-icon.png" >
+                <div id="avatar-form" class="col-md-8 col-md-offset-2 text-center">
+                    
+                    <img id="user-avatar" ng-src="{{user.avatarURL}}" width="200px" height="200px" src="/images/user-icon.png">
                 </div>
                 <div class="col-md-12 text-center">
                     <button class="create-form-button btn btn-primary" ng-click="addImage()">
@@ -48,19 +47,25 @@
                     <input id="inputFile" type="file" accept="image/x-png,image/jpeg">
                 </div>
                 <div id="user-form" class="col-md-8 col-md-offset-2">
-                        <button style="display: none"  id="btnSave" type="submit" class="create-form-button btn btn-primary" ng-click="updateUser()">Lưu</button>
+                    
                     <h2 class="text-center"><strong>Thông tin người dùng</strong></h2>
                     <form name="userForm" ng-validate="validationOptions">
+                        <div>                            
+                                <button id="btnAddImage" style="display: none" class="create-form-button btn btn-danger" ng-click="hideInput()">Hủy</button>
+                                <button id="btnCreate" type="submit" class="create-form-button btn btn-primary" ng-click="showInput()">Sửa</button>
+                                <button style="display: none" id="btnSave" type="submit" class="create-form-button btn btn-primary" ng-click="updateUser()">Lưu</button>
                             <div class="form-group">
-                                    <label for="name">Tên người dùng:</label>
-                                    <p class="user-profile">{{user.username}}</p>
-                                    <input style="display: none" name="name" ng-model="username" type="text" class="form-control" placeholder="Nhập tên người dùng">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email:</label>
-                                    <input style="display: none" name="email" ng-model="email" type="text" class="form-control" id="email" placeholder="Email" disabled>
-                                    <p class="user-profile">{{user.email}}</p>
-                                </div>
+                                <label for="name">Tên người dùng:</label>
+                                <p class="user-profile">{{user.username}}</p>
+                                <input style="display: none" name="name" ng-model="username" type="text" class="form-control" placeholder="Nhập tên người dùng">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input style="display: none" name="email" ng-model="email" type="text" class="form-control" id="email" placeholder="Email"
+                                    disabled>
+                                <p class="user-profile">{{user.email}}</p>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

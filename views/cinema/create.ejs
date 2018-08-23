@@ -17,12 +17,12 @@
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">            
             <ul class="nav navbar-nav navbar-right">
                     <li ng-show="user._id" ng-cloak>
-                            <a ng-href="/user/{{user._id}}">
-                                <i class="fa fa-user" aria-hidden="true"></i> {{user.username}}</a>
+                            <a ng-href="/user/{{user.userLink}}">
+                              <img id="avatar" width="40px" height="40px" ng-src="{{user.avatarURL}}" src="/images/user-icon.png"> {{user.username}}</a>
                         </li>
                 <li ng-show="user._id" ng-cloak>
                     <a href="/create">
-                        <i class="fa fa-user-plus"></i> Tạo phim</a>
+                        <i class="fa fa-plus"></i> Tạo phim</a>
                 </li>
                 <li ng-show="!user._id" ng-cloak>
                     <a href="/register">
@@ -47,12 +47,14 @@
     <div class="container">
       <div id="content">
         <input id="inputFile" type="file" accept="image/x-png,image/jpeg">
-        <button id="btnAddImage" class="create-form-button btn btn-primary" ng-click="addImage()">
-          <i class="fa fa-upload" aria-hidden="true"></i> Thêm hình</button>
-        <button id="btnCreate" type="submit" class="create-form-button btn btn-primary" ng-click="createMovie()">{{buttonTitle}}</button>
+        <button id="btnAddImage" ng-click="returnHome()" class="create-form-button btn btn-primary">
+           Hủy</button>
+        <button id="btnCreate" type="submit" class="create-form-button btn btn-primary" ng-click="createMovie()">{{buttonTitle}}</button>        
         <img ng-src="{{movie.imgURL}}" id="movie-image" src="/images/movie-image.jpg">
+        <button id="btnChangeImage" ng-click="addImage()" class="create-form-button btn btn-primary" ng-click="addImage()">
+            <i class="fa fa-upload" aria-hidden="true"></i> Thêm hình</button>  
       </div>
-      <form name="createForm" ng-validate="validationOptions">
+      <form name="createForm" ng-validate="validationOptions">          
         <div id="movie-form" class="col-md-10 col-md-offset-1">
           <h1 id="label" class="text-center">{{formTitle}}</h1>
           <div class="form-group">

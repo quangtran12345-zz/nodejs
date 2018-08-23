@@ -1,5 +1,6 @@
 var myApp = angular.module('Cinema')
-myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, apiService) {  
+myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, apiService) {
+  $scope.movieTypes = ['Hành Động', 'Kinh Dị', 'Tình Cảm']
   $('#datepicker').datetimepicker({
     format: 'DD/MM/YYYY',
     date: new Date()
@@ -61,8 +62,7 @@ myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, 
       console.log(error)
     }
     )
-  }else{
-    $scope.movieTypes = ['Hành Động', 'Kinh Dị', 'Tình Cảm']
+  } else {
     $scope.movieType = $scope.movieTypes[0]
     $scope.formTitle = 'Tạo phim mới'
     $scope.buttonTitle = 'Tạo phim'
@@ -71,7 +71,7 @@ myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, 
   if (token) {
     apiService.getUser({token: token})
       .then(function (response) {
-        $scope.user = response.data        
+        $scope.user = response.data
       })
   }
   $scope.validationOptions = {
@@ -119,6 +119,9 @@ myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, 
   $scope.addImage = function () {
     var inputFile = document.getElementById('inputFile')
     inputFile.click()
+  }
+  $scope.returnHome = function () {
+    window.location.href = '/'
   }
   $('#inputFile').change(function (e) {
     $scope.file = e.target.files[0]

@@ -1,6 +1,6 @@
 <% layout('../layout') -%>
-<div class="loader"></div>
-<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner" ng-controller="RegisterController">
+    <div class="loader"></div>
+    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner" ng-controller="RegisterController">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
@@ -14,24 +14,24 @@
                     <span class="brand">My<strong>Cinema</strong>
                     </span>
             </div>
-            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">            
+            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                 <ul class="nav navbar-nav navbar-right">
-                        <li ng-show="user._id" ng-cloak>
-                                <a href="/user/{{user._id}}">
-                                    <i class="fa fa-user" aria-hidden="true"></i> {{user.username}}</a>
-                            </li>
+                    <li ng-show="user._id" ng-cloak>
+                        <a href="/user/{{user._id}}">
+                            <i class="fa fa-user" aria-hidden="true"></i> {{user.username}}</a>
+                    </li>
                     <li ng-show="user._id" ng-cloak>
                         <a href="/create">
-                            <i class="fa fa-user-plus"></i> Tạo phim</a>
+                            <i class="fa fa-plus"></i> Tạo phim</a>
                     </li>
                     <li ng-show="!user._id" ng-cloak>
                         <a href="/register">
                             <i class="fa fa-user-plus"></i> Đăng ký</a>
-                    </li>                   
+                    </li>
                     <li ng-show="user._id" ng-cloak>
-                            <a href="" ng-click="signout()">
-                                <i class="fa fa-sign-out"></i> Đăng xuất</a>
-                        </li>
+                        <a href="" ng-click="signout()">
+                            <i class="fa fa-sign-out"></i> Đăng xuất</a>
+                    </li>
                     <li ng-show="!user._id" ng-cloak>
                         <a href="/login">
                             <i class="fa fa-sign-in"></i> Đăng nhập</a>
@@ -64,7 +64,25 @@
                         <label for="pwd">Nhập lại mật khẩu:</label>
                         <input name="confirmPassword" type="password" class="form-control" placeholder="Xác nhận mật khẩu">
                     </div>
-                    <button type="submit" ng-click="createUser()" id="register-button" class="create-form-button btn btn-primary">Đăng ký</button>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-6">
+                        <button type="submit" ng-click="createUser()" id="register-button" class="create-form-button btn btn-primary">Đăng
+                            ký</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row external-login-content">
+                        <div class="col-md-6">
+                            <a href="/api/auth/google" class="btn btn-block btn-social btn-lg btn-google">
+                                <span class="fa fa-google"></span> Google
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="/api/auth/facebook" class="btn btn-block btn-social btn-lg btn-facebook">
+                                <span class="fa fa-facebook"></span> Facebook
+                            </a>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

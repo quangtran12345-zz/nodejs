@@ -57,6 +57,7 @@ myApp.controller('ProfileController', ['$scope', 'apiService', function ($scope,
     $('.user-profile').hide()
     $('.form-control').show()
     $('#btnSave').show()
+    $('#btnAddImage').show()
   }
   $scope.hideInput = function () {
     $scope.username = $scope.user.username
@@ -64,9 +65,11 @@ myApp.controller('ProfileController', ['$scope', 'apiService', function ($scope,
     $('.user-profile').show()
     $('.form-control').hide()
     $('#btnSave').hide()
+    $('#btnAddImage').hide()
   }
   $('#inputFile').on('change', function (e) {
     $scope.file = e.target.files[0]
+    $('#user-avatar').attr('src', URL.createObjectURL($scope.file))
     if ($scope.file !== undefined) {
       let data = new FormData()
       data.append('file', $scope.file)
@@ -77,8 +80,7 @@ myApp.controller('ProfileController', ['$scope', 'apiService', function ($scope,
         processData: false,
         contentType: false,
         success: function (data) {
-          $scope.avatar = data.avatarURL
-          $('#user-avatar').attr('src', data.avatarURL)
+          $scope.avatar = data.avatarURL                    
         },
         error: function (err) {
           alert('Lỗi xin hãy thử lại')

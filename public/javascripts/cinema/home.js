@@ -24,6 +24,7 @@ myApp.controller('HomeController', ['$scope', 'apiService', function ($scope, ap
   }
   apiService.getFilms().then(function (response) {
     $scope.movies = response.data.cinemas
+    console.log($scope.movies)
     $('.loader').fadeOut(500)
   },
   function (error) {

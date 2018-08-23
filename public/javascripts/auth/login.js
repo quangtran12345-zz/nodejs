@@ -27,6 +27,7 @@ myApp.controller('LoginController', ['$scope', 'apiService', function ($scope, a
         console.log(response)
         if (response.data.status === 200) {
           alert(response.data.message)
+          $('#myModal').modal('toggle')
         }
       }, function (error) {
         alert(error.data.errorMessage)

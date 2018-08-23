@@ -3,14 +3,14 @@ const Cinema = mongoose.model('Cinema')
 const common = require('../shared/common')
 const getCinemas = async function () {
   try {
-    return await Cinema.find().sort('-createdDate').exec()
+    return await Cinema.find().sort('-createdDate').populate('user').exec()
   } catch (error) {
     throw error
   }
 }
 const getCinemaByLink = async function (link) {
   try {
-    let cinema = await Cinema.findOne({ link: link })
+    let cinema = await Cinema.findOne({ link: link }).populate('user')
     return cinema
   } catch (error) {
     throw error

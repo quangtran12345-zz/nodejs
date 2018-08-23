@@ -8,6 +8,13 @@ const smtpTransport = require('nodemailer-smtp-transport')
 const nodemailer = require('nodemailer')
 const configs = require('../configs/config')
 const responseStatus = require('../configs/responseStatus')
+const common = require('../shared/common')
+const generateLink = function (data) {
+  let id = data.id.substr(data.id.length - 5)
+  let convertedlink = common.convertToUsignedChar(data.username)
+  let link = convertedlink.split(' ').join('-') + '-' + id
+  return link
+}
 const createUser = async function (data) {
   try {
     let userDuplicate = await User.findOne({ email: data.email })
@@ -17,10 +24,10 @@ const createUser = async function (data) {
       }))
     }
     let savedUser = new User(data)
+    savedUser.userLink = generateLink(savedUser)
     let newPassword = bcrypt.hashSync(data.password, 10)
     savedUser.password = newPassword
-    await savedUser.save()
-    return savedUser
+    return await savedUser.save()
   } catch (error) {
     throw error
   }
