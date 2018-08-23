@@ -20,11 +20,11 @@ myApp.controller('HomeController', ['$scope', 'apiService', function ($scope, ap
     apiService.getUser({token: token})
       .then(function (response) {
         $scope.user = response.data
-        console.log($scope.user)
       })
   }
   apiService.getFilms().then(function (response) {
     $scope.movies = response.data.cinemas
+    $('.loader').fadeOut(500)
   },
   function (error) {
     console.log(error)

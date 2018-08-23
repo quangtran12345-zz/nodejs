@@ -1,4 +1,5 @@
 <% layout('../layout') -%>
+
     <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner" ng-controller="HomeController">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -13,12 +14,12 @@
                     <span class="brand">My<strong>Cinema</strong>
                     </span>
             </div>
-            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">            
+            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                 <ul class="nav navbar-nav navbar-right">
-                        <li h ng-show="user._id" ng-cloak>
-                                <a ng-href="/user/{{user._id}}">
-                                    <i class="fa fa-user" aria-hidden="true"></i> {{user.username}}</a>
-                            </li>
+                    <li h ng-show="user._id" ng-cloak>
+                        <a ng-href="/user/{{user._id}}">
+                            <i class="fa fa-user" aria-hidden="true"></i> {{user.username}}</a>
+                    </li>
                     <li ng-show="user._id" ng-cloak>
                         <a href="/create">
                             <i class="fa fa-user-plus"></i> Tạo phim</a>
@@ -26,11 +27,11 @@
                     <li ng-show="!user._id" ng-cloak>
                         <a href="/register">
                             <i class="fa fa-user-plus"></i> Đăng ký</a>
-                    </li>                   
+                    </li>
                     <li ng-show="user._id" ng-cloak>
-                            <a href="" ng-click="signout()">
-                                <i class="fa fa-sign-out"></i> Đăng xuất</a>
-                        </li>
+                        <a href="" ng-click="signout()">
+                            <i class="fa fa-sign-out"></i> Đăng xuất</a>
+                    </li>
                     <li ng-show="!user._id" ng-cloak>
                         <a href="/login">
                             <i class="fa fa-sign-in"></i> Đăng nhập</a>
@@ -40,10 +41,11 @@
             </nav>
         </div>
     </header>
+    <div class="loader"></div>
     <div ng-controller="HomeController">
         <div class="container-fluid">
             <div class="row">
-                    <input type="hidden" id="token" value='<%= token %>'/>
+                <input type="hidden" id="token" value='<%= token %>' />
                 <div ng-repeat="movie in movies" class=" col-md-3 col-sm-6 col-xs-12">
                     <div class="item">
                         <div class="item-movie">

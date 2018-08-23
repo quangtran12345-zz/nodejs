@@ -1,5 +1,6 @@
 var myApp = angular.module('Cinema')
 myApp.controller('RegisterController', ['$scope', 'apiService', function ($scope, apiService) {
+  
   $scope.validationOptions = {
     rules: {
       name: {
@@ -69,4 +70,5 @@ myApp.controller('RegisterController', ['$scope', 'apiService', function ($scope
       fisrtInvalidElement.$$element.focus()
     }
   }
+  $('.loader').fadeOut(500)
 }])

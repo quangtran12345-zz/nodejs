@@ -66,4 +66,5 @@ myApp.controller('LoginController', ['$scope', 'apiService', function ($scope, a
       fisrtInvalidElement.$$element.focus()
     }
   }
+  $('.loader').fadeOut(500)
 }])

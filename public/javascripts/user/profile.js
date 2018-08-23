@@ -5,7 +5,7 @@ myApp.controller('ProfileController', ['$scope', 'apiService', function ($scope,
     apiService.getUser({token: token})
       .then(function (response) {
         $scope.user = response.data
-        console.log(response.data)
+        $('.loader').fadeOut(500)
       })
   }
   $scope.validationOptions = {

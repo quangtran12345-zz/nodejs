@@ -1,5 +1,5 @@
 var myApp = angular.module('Cinema')
-myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, apiService) {
+myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, apiService) {  
   $('#datepicker').datetimepicker({
     format: 'DD/MM/YYYY',
     date: new Date()
@@ -34,10 +34,7 @@ myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, 
       }
     })
   }
-  $scope.movieTypes = ['Hành Động', 'Kinh Dị', 'Tình Cảm']
-  $scope.movieType = $scope.movieTypes[0]
-  $scope.formTitle = 'Tạo phim mới'
-  $scope.buttonTitle = 'Tạo phim'
+
   $scope.signout = function () {
     common.showConfirmBox('Bạn có thật sự muốn đăng xuất', function () {
       common.setCookie('token', null)
@@ -58,17 +55,23 @@ myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, 
         format: 'DD/MM/YYYY',
         date: new Date(response.data.cinema.publicDate)
       })
+      $('.loader').fadeOut(500)
     },
     function (error) {
       console.log(error)
     }
     )
+  }else{
+    $scope.movieTypes = ['Hành Động', 'Kinh Dị', 'Tình Cảm']
+    $scope.movieType = $scope.movieTypes[0]
+    $scope.formTitle = 'Tạo phim mới'
+    $scope.buttonTitle = 'Tạo phim'
   }
   let token = common.getCookie('token')
   if (token) {
     apiService.getUser({token: token})
       .then(function (response) {
-        $scope.user = response.data
+        $scope.user = response.data        
       })
   }
   $scope.validationOptions = {
@@ -121,4 +124,5 @@ myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, 
     $scope.file = e.target.files[0]
     $('#movie-image').attr('src', URL.createObjectURL($scope.file))
   })
+  $('.loader').fadeOut(500)
 }])

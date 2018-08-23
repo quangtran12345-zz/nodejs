@@ -58,6 +58,8 @@ const sendResetPasword = async function (req) {
   let user = await User.findOne({email: req.body.email})
   if (!user) {
     throw (responseStatus.Code400({errorMessage: 'Không tìm thấy tài khoản. Vui lòng kiểm tra lại'}))
+  } else if (user.providerId) {
+    throw (responseStatus.Code400({errorMessage: 'Tài khoản này không thể đổi mật khẩu'}))
   }
   let token = jwt.sign({ email: req.body.email }, configs.secret, {
     expiresIn: Date.now() + 3600000
@@ -83,10 +85,10 @@ const sendResetPasword = async function (req) {
 const resetPassword = async function (token) {
   let newPassword
   let user = await authenWithToken(token)
-  console.log(user.password)
   if (user) {
-    newPassword = bcrypt.hashSync(generatePassword(6), 10)
-    user.password = newPassword
+    newPassword = generatePassword(6)
+    let hashPassword = bcrypt.hashSync(newPassword, 10)
+    user.password = hashPassword
     await user.save()
     return newPassword
   }
