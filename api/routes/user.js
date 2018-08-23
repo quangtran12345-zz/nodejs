@@ -41,7 +41,7 @@ router.post('/avatar', fileUpload(), async (req, res) => {
     })
   }
 })
-router.post('/', checkAuthentication, async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     let savedData = await userController.updateUser(req.body)
     res.send({user: savedData})
