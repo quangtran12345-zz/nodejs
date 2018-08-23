@@ -69,7 +69,7 @@ myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, 
   }
   let token = common.getCookie('token')
   if (token) {
-    apiService.getUser({token: token})
+    apiService.getUser({ token: token })
       .then(function (response) {
         $scope.user = response.data
       })
@@ -125,7 +125,13 @@ myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, 
   }
   $('#inputFile').change(function (e) {
     $scope.file = e.target.files[0]
-    $('#movie-image').attr('src', URL.createObjectURL($scope.file))
+    if ($scope.file !== undefined) {
+      $('.lds-dual-ring').fadeIn(500, function () {
+        $('.lds-dual-ring').fadeOut(100)
+        $('#movie-image').attr('src', URL.createObjectURL($scope.file))
+      })
+    }
   })
+
   $('.loader').fadeOut(500)
 }])

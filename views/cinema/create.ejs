@@ -50,6 +50,7 @@
         <button id="btnAddImage" ng-click="returnHome()" class="create-form-button btn btn-primary">
            Hủy</button>
         <button id="btnCreate" type="submit" class="create-form-button btn btn-primary" ng-click="createMovie()">{{buttonTitle}}</button>        
+        <div class="lds-dual-ring"></div>
         <img ng-src="{{movie.imgURL}}" id="movie-image" src="/images/movie-image.jpg">
         <button id="btnChangeImage" ng-click="addImage()" class="create-form-button btn btn-primary" ng-click="addImage()">
             <i class="fa fa-upload" aria-hidden="true"></i> Thêm hình</button>  
