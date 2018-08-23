@@ -17,8 +17,8 @@ angular.module('Cinema', ['ngValidate']).factory('apiService', ['$http', functio
     getUser: function (token) {
       return $http.post('/api/auth/user', token)
     },
-    editInfo: function (id, data) {
-      return $http.put('/api/user/' + id, data)
+    editInfo: function (data) {
+      return $http.post('/api/user/', data)
     },
     forgotPassword: function (data) {
       return $http.post('/api/auth/forgot-password', data)

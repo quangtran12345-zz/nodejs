@@ -36,12 +36,10 @@
     <div id="login-container" class="parent" ng-controller="ProfileController">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-md-offset-3 text-center">
-                    <!-- <input id="inputFile" type="file" accept="image/x-png,image/jpeg">
-                            <button id="btnAddImage" class="create-form-button btn btn-primary" ng-click="addImage()"> -->
-                    <button id="btnAddImage" class="create-form-button btn btn-primary" ng-click="addImage()">Hủy</button>
+                <div id="avatar-form" class="col-md-8 col-md-offset-2 text-center">                    
+                    <button id="btnAddImage" class="create-form-button btn btn-primary" ng-click="hideInput()">Hủy</button>
                     <button id="btnCreate" type="submit" class="create-form-button btn btn-primary" ng-click="showInput()">Sửa</button>
-                    <img id="user-avatar" width="200px" height="200px" src="/images/user-icon.png">
+                    <img id="user-avatar" ng-src="{{user.avatarURL}}" width="200px" height="200px" src="/images/user-icon.png" >
                 </div>
                 <div class="col-md-12 text-center">
                     <button class="create-form-button btn btn-primary" ng-click="addImage()">
@@ -49,8 +47,9 @@
                     <input id="inputFile" type="file" accept="image/x-png,image/jpeg">
                 </div>
                 <div id="user-form" class="col-md-8 col-md-offset-2">
+                        <button style="display: none"  id="btnSave" type="submit" class="create-form-button btn btn-primary" ng-click="updateUser()">Lưu</button>
                     <h2 class="text-center"><strong>Thông tin người dùng</strong></h2>
-                    <form>
+                    <form name="userForm" ng-validate="validationOptions">
                             <div class="form-group">
                                     <label for="name">Tên người dùng:</label>
                                     <p class="user-profile">{{user.username}}</p>
@@ -61,7 +60,6 @@
                                     <input style="display: none" name="email" ng-model="email" type="text" class="form-control" id="email" placeholder="Email" disabled>
                                     <p class="user-profile">{{user.email}}</p>
                                 </div>
-
                     </form>
                 </div>
             </div>

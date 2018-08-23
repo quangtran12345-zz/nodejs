@@ -13,7 +13,7 @@ require('./api/models/userModel')
 var authentication = require('./api/routes/auth')
 var indexRouter = require('./routes/index')
 var cinemaRouter = require('./api/routes/cinema')
-var usersRouter = require('./routes/users')
+var userRouter = require('./api/routes/user')
 var app = express()
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 app.use('/', indexRouter)
-app.use('/users', usersRouter)
+app.use('/api/user', userRouter)
 app.use('/api/cinema', cinemaRouter)
 app.use('/api/auth', authentication)
 // catch 404 and forward to error handler
