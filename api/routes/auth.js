@@ -42,10 +42,12 @@ router.post('/reset-password', async (req, res) => {
   try {
     let result = await authController.sendResetPasword(req)
     if (result) {
-      res.status(200).send(responseStatus.Code200({message: 'Yêu cầu thay đổi mật khẩu thành công.Vui lòng kiểm tra email'}))
+      res.status(200).send(
+        responseStatus.Code200({message: 'Yêu cầu thay đổi mật khẩu thành công.Vui lòng kiểm tra email', body: req.body})
+      )
     }
   } catch (error) {
-    res.status(400).send(error)
+    res.status(400).send({error: error, body: req.body})
   }
 })
 router.get('/reset/:token', async (req, res) => {
