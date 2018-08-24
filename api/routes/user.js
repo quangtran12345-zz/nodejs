@@ -41,10 +41,33 @@ router.post('/avatar', fileUpload(), async (req, res) => {
     })
   }
 })
-router.post('/', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
-    let savedData = await userController.updateUser(req.body)
+    let savedData = await userController.updateUser(req.params.id, req.body.data)
     res.send({user: savedData})
+  } catch (error) {
+    res.send({
+      error: error
+    })
+  }
+})
+router.put('/:id/change-avatar', async (req, res) => {
+  let fileName
+  if (req.files) {
+    fileName = req.files.file.name
+    let imageFile = req.files.file
+    imageFile.mv(__dirname + '/../../public/images/' + fileName, function (err) {
+      if (err) {
+        res.send({
+          error: err
+        })
+      }
+    })
+  }
+  try {
+    let avatarURL = `/images/${fileName}`
+    let savedData = await userController.addImage(req.params.id, avatarURL)
+    res.status(200).send(responseStatus.Code200)
   } catch (error) {
     res.send({
       error: error

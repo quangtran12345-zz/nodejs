@@ -12,9 +12,9 @@ const addImage = async function (_id, avatarURL) {
     throw error
   }
 }
-const updateUser = async function (data) {
+const updateUser = async function (id, data) {
   try {
-    let user = await User.findOne({_id: data._id})
+    let user = await User.findById(id)
     if (user) {
       user.name = data.name
       return await user.save()
