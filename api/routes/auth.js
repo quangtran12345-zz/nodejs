@@ -1,6 +1,7 @@
 const express = require('express')
 
 const router = express.Router()
+const fileUpload = require('express-fileupload')
 var passport = require('../configs/passport').passport
 const authController = require('../controllers/authController')
 var responseStatus = require('../configs/responseStatus')
@@ -38,7 +39,7 @@ router.post('/user', async (req, res) => {
     res.send({error: error})
   }
 })
-router.post('/reset-password', async (req, res) => {
+router.post('/reset-password', fileUpload(), async (req, res) => {
   try {
     let result = await authController.sendResetPasword(req)
     if (result) {
