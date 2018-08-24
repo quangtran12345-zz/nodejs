@@ -28,7 +28,7 @@ myApp.controller('ProfileController', ['$scope', 'apiService', function ($scope,
       }
       apiService.editInfo(data).then(function (response) {
         console.log(response)
-        window.location.href = `/user/${$scope.user._id}`
+        window.location.href = `/user/${response.data.user.userLink}`
       }, function (err) {
         alert(err)
       })
@@ -80,7 +80,7 @@ myApp.controller('ProfileController', ['$scope', 'apiService', function ($scope,
         processData: false,
         contentType: false,
         success: function (data) {
-          $scope.avatar = data.avatarURL                    
+          $scope.avatar = data.avatarURL
         },
         error: function (err) {
           alert('Lỗi xin hãy thử lại')

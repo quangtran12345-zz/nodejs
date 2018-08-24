@@ -76,7 +76,7 @@ router.get('/:id', async (req, res) => {
     })
   }
 })
-router.get('/:link', async (req, res) => {
+router.get('/link/:link', async (req, res) => {
   try {
     let cinema = await cinemaController.getCinemaByLink(req.params.link)
     res.send({

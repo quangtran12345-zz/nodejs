@@ -51,6 +51,16 @@ router.put('/:id', fileUpload(), async (req, res) => {
     })
   }
 })
+router.post('/', async (req, res) => {
+  try {
+    let savedData = await userController.updateUser(req.body._id, req.body)
+    res.send({user: savedData})
+  } catch (error) {
+    res.send({
+      error: 'Lỗi xảy ra vui lòng thử lại'
+    })
+  }
+})
 router.put('/:id/change-avatar', fileUpload(), async (req, res) => {
   let fileName
   if (req.files) {

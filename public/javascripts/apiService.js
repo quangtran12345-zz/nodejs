@@ -6,7 +6,7 @@ angular.module('Cinema', ['ngValidate']).factory('apiService', ['$http', functio
       return $http.get('/api/cinema')
     },
     getFilm: function (link) {
-      return $http.get('/api/cinema/link' + link)
+      return $http.get('/api/cinema/link/' + link)
     },
     signup: function (data) {
       return $http.post('/api/auth/signup', data)
