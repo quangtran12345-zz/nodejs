@@ -51,7 +51,7 @@ router.put('/:id', async (req, res) => {
     })
   }
 })
-router.put('/:id/change-avatar', async (req, res) => {
+router.put('/:id/change-avatar', fileUpload(), async (req, res) => {
   let fileName
   if (req.files) {
     fileName = req.files.file.name
