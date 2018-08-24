@@ -38,7 +38,7 @@ router.post('/user', async (req, res) => {
     res.send({error: error})
   }
 })
-router.post('/forgot-password', async (req, res) => {
+router.post('/reset-password', async (req, res) => {
   try {
     let result = await authController.sendResetPasword(req)
     if (result) {
