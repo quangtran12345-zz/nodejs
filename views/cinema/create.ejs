@@ -18,7 +18,7 @@
             <ul class="nav navbar-nav navbar-right">
                     <li ng-show="user._id" ng-cloak>
                             <a ng-href="/user/{{user.userLink}}">
-                              <img id="avatar" width="40px" height="40px" ng-src="{{user.avatarURL}}" src="/images/user-icon.png"> {{user.username}}</a>
+                              <img id="avatar" width="40px" height="40px" ng-src="{{user.avatarURL}}" src="/images/user-icon.png"> {{user.name}}</a>
                         </li>
                 <li ng-show="user._id" ng-cloak>
                     <a href="/create">
@@ -51,7 +51,7 @@
            Hủy</button>
         <button id="btnCreate" type="submit" class="create-form-button btn btn-primary" ng-click="createMovie()">{{buttonTitle}}</button>        
         <div class="lds-dual-ring"></div>
-        <img ng-src="{{movie.imgURL}}" id="movie-image" src="/images/movie-image.jpg">
+        <img ng-src="{{movie.posterURL}}" id="movie-image" src="/images/movie-image.jpg">
         <button id="btnChangeImage" ng-click="addImage()" class="create-form-button btn btn-primary" ng-click="addImage()">
             <i class="fa fa-upload" aria-hidden="true"></i> Thêm hình</button>  
       </div>
@@ -59,12 +59,12 @@
         <div id="movie-form" class="col-md-10 col-md-offset-1">
           <h1 id="label" class="text-center">{{formTitle}}</h1>
           <div class="form-group">
-            <label for="movieName">Tên Bộ Phim</label>
-            <input name="movieName" ng-model="movieName" type="text" class="form-control" id="movieName" placeholder="Tên bộ phim" required>
+            <label for="name">Tên Bộ Phim</label>
+            <input name="name" ng-model="name" type="text" class="form-control" id="name" placeholder="Tên bộ phim" required>
           </div>
           <div class="form-group">
             <label for="exampleSelect2">Thể loại phim:</label>
-            <select ng-options="movieType for movieType in movieTypes"  name="movieType" class="required form-control" id="movieType" ng-model="movieType">            
+            <select ng-options="genre for genre in genres"  name="genre" class="required form-control" id="genre" ng-model="genre">            
             </select>
           </div>
           <div class="form-group">
@@ -73,7 +73,7 @@
           </div>
           <div class="form-group">
             <label for="exampleTextarea">Nội dung mô tả</label>
-            <textarea name="description" ng-model="description" class="form-control" id="exampleTextarea" placeholder="Điền thông tin thêm về bộ phim, như diễn viên chính, nội dung bộ phim,..."
+            <textarea name="content" ng-model="content" class="form-control" id="exampleTextarea" placeholder="Điền thông tin thêm về bộ phim, như diễn viên chính, nội dung bộ phim,..."
               rows="5"></textarea>
           </div>
         </div>

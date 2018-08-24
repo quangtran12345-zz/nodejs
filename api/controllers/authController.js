@@ -11,7 +11,7 @@ const responseStatus = require('../configs/responseStatus')
 const common = require('../shared/common')
 const generateLink = function (data) {
   let id = data.id.substr(data.id.length - 5)
-  let convertedlink = common.convertToUsignedChar(data.username)
+  let convertedlink = common.convertToUsignedChar(data.name)
   let link = convertedlink.split(' ').join('-') + '-' + id
   return link
 }

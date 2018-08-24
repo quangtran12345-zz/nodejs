@@ -18,7 +18,7 @@
                 <ul class="nav navbar-nav navbar-right">
                         <li ng-show="user._id" ng-cloak>
                                 <a ng-href="/user/{{user.userLink}}">
-                                    <img id="avatar" width="40px" height="40px" ng-src="{{user.avatarURL}}" src="/images/user-icon.png"> {{user.username}}</a>
+                                    <img id="avatar" width="40px" height="40px" ng-src="{{user.avatarURL}}" src="/images/user-icon.png"> {{user.name}}</a>
                             </li>
                     <li ng-show="user._id" ng-cloak>
                         <a href="/create">
@@ -45,25 +45,25 @@
         <div class="container">
             <div id="content">
                 <a id="btnCreate" ng-href="/film/{{movie.link}}/edit" ng-show="movie.user._id === user._id" type="submit" id="edit-button" class="fix-line-height create-form-button btn btn-primary">Sửa</a>
-                <img id="movie-image" ng-src="{{movie.imgURL !== undefined ? movie.imgURL : tempImage }}">
+                <img id="movie-image" ng-src="{{movie.posterURL !== undefined ? movie.posterURL : tempImage }}">
             </div>
             <div id="movie-form" class="col-md-10 col-md-offset-1">
-                <h1 id="label" class="text-center">{{movie.movieName}}</h1>
+                <h1 id="label" class="text-center">{{movie.name}}</h1>
                 <p class="text-detail">
                     <span>
-                        <strong>Thể loại phim: </strong>{{movie.movieType}}</span>
+                        <strong>Thể loại phim: </strong>{{movie.genre}}</span>
                 </p>
                 <p class="text-detail">
                     <span>
-                        <strong>Thời gian phát hành: </strong> {{movie.publicDate | date: 'dd/MM/yyyy'}}</span>
+                        <strong>Thời gian phát hành: </strong> {{movie.releaseDate | date: 'dd/MM/yyyy'}}</span>
                 </p>
                 <p class="text-detail">
                     <span>
-                        <strong>Nội dung mô tả: </strong> {{movie.description}}</span>
+                        <strong>Nội dung mô tả: </strong> {{movie.content}}</span>
                 </p>      
                 <p class="text-detail">
                         <span>
-                            <strong>Người tạo: </strong> {{movie.user.username}}</span>
+                            <strong>Người tạo: </strong> {{movie.user.name}}</span>
                     </p>           
             </div>
         </div>

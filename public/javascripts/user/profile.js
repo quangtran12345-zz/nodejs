@@ -23,7 +23,7 @@ myApp.controller('ProfileController', ['$scope', 'apiService', function ($scope,
   $scope.updateUser = function () {
     if ($scope.userForm.validate()) {
       let data = {
-        username: $scope.username,
+        name: $scope.name,
         _id: $scope.user._id
       }
       apiService.editInfo(data).then(function (response) {
@@ -52,7 +52,7 @@ myApp.controller('ProfileController', ['$scope', 'apiService', function ($scope,
     inputFile.click()
   }
   $scope.showInput = function () {
-    $scope.username = $scope.user.username
+    $scope.name = $scope.user.name
     $scope.email = $scope.user.email
     $('.user-profile').hide()
     $('.form-control').show()
@@ -60,7 +60,7 @@ myApp.controller('ProfileController', ['$scope', 'apiService', function ($scope,
     $('#btnAddImage').show()
   }
   $scope.hideInput = function () {
-    $scope.username = $scope.user.username
+    $scope.name = $scope.user.name
     $scope.email = $scope.user.email
     $('.user-profile').show()
     $('.form-control').hide()

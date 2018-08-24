@@ -16,15 +16,22 @@ const updateUser = async function (data) {
   try {
     let user = await User.findOne({_id: data._id})
     if (user) {
-      user.username = data.username
+      user.name = data.name
       return await user.save()
     }
   } catch (error) {
     throw error
   }
 }
-
+const getUser = async function (id) {
+  try {
+    return await User.findById(id)
+  } catch (error) {
+    throw error
+  }
+}
 module.exports = {
   addImage: addImage,
-  updateUser: updateUser
+  updateUser: updateUser,
+  getUser: getUser
 }

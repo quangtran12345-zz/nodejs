@@ -18,7 +18,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li ng-show="user._id" ng-cloak>
                         <a href="/user/{{user._id}}">
-                            <i class="fa fa-user" aria-hidden="true"></i> {{user.username}}</a>
+                            <i class="fa fa-user" aria-hidden="true"></i> {{user.name}}</a>
                     </li>
                     <li ng-show="user._id" ng-cloak>
                         <a href="/create">
@@ -50,7 +50,7 @@
                     </div>
                     <div class="form-group">
                         <label for="name">Tên người dùng:</label>
-                        <input name="name" ng-model="username" type="text" class="form-control" placeholder="Nhập tên người dùng">
+                        <input name="name" ng-model="name" type="text" class="form-control" placeholder="Nhập tên người dùng">
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>

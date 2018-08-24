@@ -18,7 +18,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li ng-show="user._id" ng-cloak>
                         <a ng-href="/user/{{user.userLink}}">
-                            <img id="avatar" width="34px" height="34px" ng-src="{{user.avatarURL}}" src="/images/user-icon.png"> {{user.username}}</a>
+                            <img id="avatar" width="34px" height="34px" ng-src="{{user.avatarURL}}" src="/images/user-icon.png"> {{user.name}}</a>
                     </li>
                     <li ng-show="user._id" ng-cloak>
                         <a href="/create">
@@ -56,8 +56,8 @@
                                 <button style="display: none" id="btnSave" type="submit" class="create-form-button btn btn-primary" ng-click="updateUser()">Lưu</button>
                             <div class="form-group">
                                 <label for="name">Tên người dùng:</label>
-                                <p class="user-profile">{{user.username}}</p>
-                                <input style="display: none" name="name" ng-model="username" type="text" class="form-control" placeholder="Nhập tên người dùng">
+                                <p class="user-profile">{{user.name}}</p>
+                                <input style="display: none" name="name" ng-model="name" type="text" class="form-control" placeholder="Nhập tên người dùng">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email:</label>

@@ -18,7 +18,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li h ng-show="user._id" ng-cloak>
                         <a ng-href="/user/{{user.userLink}}">
-                            <img id="avatar" width="40px" height="40px" ng-src="{{user.avatarURL}}" src="/images/user-icon.png"> {{user.username}}</a>
+                            <img id="avatar" width="40px" height="40px" ng-src="{{user.avatarURL}}" src="/images/user-icon.png"> {{user.name}}</a>
                     </li>
                     <li ng-show="user._id" ng-cloak>
                         <a href="/create">
@@ -50,25 +50,25 @@
                     <div class="item">
                         <div class="item-movie">
                             <a ng-href="/film/{{movie.link}}" class="btn-detail">
-                                <img class="img-cinema" ng-src="{{movie.imgURL !== undefined ? movie.imgURL : tempImage }}">
+                                <img class="img-cinema" ng-src="{{movie.posterURL !== undefined ? movie.posterURL : tempImage }}">
                             </a>
                             <div class="content">
                                 <h3 class="title">
-                                    <a ng-href="/film/{{movie.link}}">{{movie.movieName}}</a>
+                                    <a ng-href="/film/{{movie.link}}">{{movie.name}}</a>
                                 </h3>
                                 <p class="text-detail">
                                     <span>
-                                        <strong>Thể loại: </strong>{{movie.movieType}}
+                                        <strong>Thể loại: </strong>{{movie.genre}}
                                     </span>
                                 </p>
                                 <p class="text-detail">
                                     <span>
-                                        <strong>Khởi chiếu: </strong>{{movie.publicDate | date: 'dd-MM-yyyy'}}
+                                        <strong>Khởi chiếu: </strong>{{movie.releaseDate | date: 'dd-MM-yyyy'}}
                                     </span>
                                 </p>
                                 <p class="text-detail">
                                         <span>
-                                            <strong>Người tạo: </strong>{{movie.user.username}}
+                                            <strong>Người tạo: </strong>{{movie.user.name}}
                                         </span>
                                     </p>
                                 <a type="button" class="detail-btn btn btn-success" ng-href="/film/{{movie.link}}"><span><i

@@ -60,7 +60,7 @@ function createPassportConfig (app) {
       }
       if (!user) {
         let newUser = {
-          username: profile.displayName,
+          name: profile.displayName,
           email: profile.id + '@facebook.com',
           providerId: profile.id,
           avatarURL: '',
@@ -94,7 +94,7 @@ function createPassportConfig (app) {
         }
         if (!user) {
           let newUser = {
-            username: profile.displayName,
+            name: profile.displayName,
             email: profile.emails[0].value,
             providerId: profile.id,
             avatarURL: profile.photos[0].value,

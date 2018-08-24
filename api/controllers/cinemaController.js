@@ -16,6 +16,14 @@ const getCinemaByLink = async function (link) {
     throw error
   }
 }
+const getCinema = async function (id) {
+  try {
+    let cinema = await Cinema.findById(id).populate('user')
+    return cinema
+  } catch (error) {
+    throw error
+  }
+}
 const createCinema = async function (data, userId) {
   let savedData
   try {
@@ -23,6 +31,7 @@ const createCinema = async function (data, userId) {
       data.createdDate = new Date()
       savedData = new Cinema(data)
       savedData.user = userId
+      savedData.creatorId = savedData.user
       savedData = await savedData.save()
       let link = generateLink(savedData)
       savedData.link = link
@@ -38,12 +47,13 @@ const createCinema = async function (data, userId) {
 }
 const generateLink = function (data) {
   let id = data.id.substr(data.id.length - 5)
-  let convertedlink = common.convertToUsignedChar(data.movieName)
+  let convertedlink = common.convertToUsignedChar(data.name)
   let link = convertedlink.split(' ').join('-') + '-' + id
   return link
 }
 module.exports = {
   getCinemas: getCinemas,
   createCinema: createCinema,
-  getCinemaByLink: getCinemaByLink
+  getCinemaByLink: getCinemaByLink,
+  getCinema: getCinema
 }

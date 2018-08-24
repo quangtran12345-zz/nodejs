@@ -1,6 +1,6 @@
 var myApp = angular.module('Cinema')
 myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, apiService) {
-  $scope.movieTypes = ['Hành Động', 'Kinh Dị', 'Tình Cảm']
+  $scope.genres = ['Hành Động', 'Kinh Dị', 'Tình Cảm']
   $('#datepicker').datetimepicker({
     format: 'DD/MM/YYYY',
     date: new Date()
@@ -9,14 +9,15 @@ myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, 
     let data = new FormData()
     if (filmId) {
       data.append('id', $scope.movie._id)
-      data.append('imgURL', $scope.movie.imgURL)
+      data.append('posterURL', $scope.movie.posterURL)
     }
-    data.append('movieName', $scope.movieName)
-    data.append('movieType', $scope.movieType)
-    data.append('publicDate', common.stringToTimestamp($('#datepicker').data('date')))
-    data.append('description', $scope.description)
+    data.append('name', $scope.name)
+    data.append('genre', $scope.genre)
+    data.append('releaseDate', common.stringToTimestamp($('#datepicker').data('date')))
+    data.append('content', $scope.content)
     data.append('user', $scope.user._id)
     data.append('file', $scope.file)
+    data.append('creatorId', $scope.user._id)
     // data.append('user', )
     $.ajax('/api/cinema', {
       method: 'POST',
@@ -46,15 +47,15 @@ myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, 
   if (filmId) {
     apiService.getFilm(filmId).then(function (response) {
       $scope.movie = response.data.cinema
-      $scope.movieName = response.data.cinema.movieName
-      $scope.description = response.data.cinema.description
-      $scope.movieType = response.data.cinema.movieType
+      $scope.name = response.data.cinema.name
+      $scope.content = response.data.cinema.content
+      $scope.genre = response.data.cinema.genre
       $scope.formTitle = 'Sửa phim'
       $scope.buttonTitle = 'Lưu phim'
       $('#datepicker').data('DateTimePicker').destroy()
       $('#datepicker').datetimepicker({
         format: 'DD/MM/YYYY',
-        date: new Date(response.data.cinema.publicDate)
+        date: new Date(response.data.cinema.releaseDate)
       })
       $('.loader').fadeOut(500)
     },
@@ -63,7 +64,7 @@ myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, 
     }
     )
   } else {
-    $scope.movieType = $scope.movieTypes[0]
+    $scope.genre = $scope.genres[0]
     $scope.formTitle = 'Tạo phim mới'
     $scope.buttonTitle = 'Tạo phim'
   }
@@ -76,24 +77,24 @@ myApp.controller('CreateController', ['$scope', 'apiService', function ($scope, 
   }
   $scope.validationOptions = {
     rules: {
-      movieName: {
+      name: {
         required: true
       },
-      movieType: {
+      genre: {
         required: true
       },
-      description: {
+      content: {
         required: true
       }
     },
     messages: {
-      movieName: {
+      name: {
         required: 'Vui lòng nhập tên bộ phim'
       },
-      movieType: {
+      genre: {
         required: 'Vui lòng chọn thể loại phim'
       },
-      description: {
+      content: {
         required: 'Vui lòng nhập chi tiết phim'
       }
     }

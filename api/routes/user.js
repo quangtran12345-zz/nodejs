@@ -51,5 +51,14 @@ router.post('/', async (req, res) => {
     })
   }
 })
-
+router.get('/:id', async (req, res) => {
+  try {
+    let user = await userController.getUser(req.params.id)
+    res.send({user: user})
+  } catch (error) {
+    res.send({
+      error: error
+    })
+  }
+})
 module.exports = router

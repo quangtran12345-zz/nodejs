@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
   try {
     let cinemas = await cinemaController.getCinemas()
     res.send({
-      cinemas: cinemas
+      films: cinemas
     })
   } catch (error) {
     res.send({
@@ -50,11 +50,23 @@ router.post('/', fileUpload(), async (req, res) => {
   }
   try {
     if (fileName) {
-      req.body.imgURL = `/images/${fileName}`
+      req.body.posterURL = `/images/${fileName}`
     }
-    let parsedCookie = common.parseCookies(req)
-    let authenUser = await authController.authenWithToken(parsedCookie.token)
-    let cinema = await cinemaController.createCinema(req.body, authenUser._id)
+    // let parsedCookie = common.parseCookies(req)
+    // let authenUser = await authController.authenWithToken(parsedCookie.token)
+    let cinema = await cinemaController.createCinema(req.body, req.body.creatorId)
+    res.send({
+      cinema: cinema
+    })
+  } catch (error) {
+    res.send({
+      error: error
+    })
+  }
+})
+router.get('/:id', async (req, res) => {
+  try {
+    let cinema = await cinemaController.getCinema(req.params.id)
     res.send({
       cinema: cinema
     })

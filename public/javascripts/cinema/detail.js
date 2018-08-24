@@ -18,7 +18,7 @@ myApp.controller('DetailController', ['$scope', 'apiService', function ($scope, 
   let link = pathname.substr(pathname.lastIndexOf('/') + 1)
   apiService.getFilm(link).then(function (response) {
     $scope.movie = response.data.cinema
-    document.title = $scope.movie.movieName
+    document.title = $scope.movie.name
     $('.loader').fadeOut(500)
   },
   function (error) {

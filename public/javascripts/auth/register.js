@@ -38,7 +38,7 @@ myApp.controller('RegisterController', ['$scope', 'apiService', function ($scope
   $scope.createUser = function () {
     if ($scope.createForm.validate()) {
       let data = {
-        username: $scope.username,
+        name: $scope.name,
         password: $scope.password,
         email: $scope.email
       }
