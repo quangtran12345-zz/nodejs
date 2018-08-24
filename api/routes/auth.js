@@ -24,7 +24,8 @@ router.post('/signin', async (req, res, next) => {
     req.logIn(user, async function (err) {
       if (err) { return next(err) }
       return res.send(responseStatus.Code200({
-        token: info.token
+        token: info.token,
+        user: info.user
       }))
     })
   })(req, res, next)
