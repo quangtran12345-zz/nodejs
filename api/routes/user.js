@@ -41,13 +41,13 @@ router.post('/avatar', fileUpload(), async (req, res) => {
     })
   }
 })
-router.put('/:id', fileUpload() ,async (req, res) => {
+router.put('/:id', fileUpload(), async (req, res) => {
   try {
-    //let savedData = await userController.updateUser(req.params.id, req.body)
-    res.send({user: req.body})
+    let savedData = await userController.updateUser(req.params.id, req.body)
+    res.send({user: savedData})
   } catch (error) {
     res.send({
-      error: req.body
+      error: error
     })
   }
 })
