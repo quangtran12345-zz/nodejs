@@ -44,10 +44,10 @@ router.post('/avatar', fileUpload(), async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     let savedData = await userController.updateUser(req.params.id, req.body)
-    res.send({user: savedData})
+    res.send({user: req.body})
   } catch (error) {
     res.send({
-      error: error
+      error: req.body
     })
   }
 })
