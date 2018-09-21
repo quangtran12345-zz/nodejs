@@ -21,7 +21,7 @@
 {  
   "name": "The Godfather II",
   "genre": "Hành động",
-  "releaseDate": "12/1974",
+  "releaseDate": "20/12/2017",
   "content": "The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, expands and tightens his grip on the family crime syndicate."
 }
 ```
@@ -36,6 +36,7 @@
 { cinema: `<Movies Object>` } <br>
 #### Sample response
 ```json
+{
 cinema: {
   _id: "5ba46dfbc9a0f8001444cd7f",
   name: "Kungfu Panda",
@@ -54,11 +55,10 @@ cinema: {
   avatarURL: "/images/source.gif"
   },
   link: "abc-4cd7f"
+  }
 }
 ```
 #### Success Response
-{ message: `Movie created successfully`, photoURL: `<String>` } <br>
-#### Error Response
-{ errorMessage: `<String>` } <br>
+{ cinema : `<Object>`} <br>
 #### Error Response
 { error: `<String>` }
