@@ -38,23 +38,15 @@
 ```json
 {
 cinema: {
- _id: "5ba46dfbc9a0f8001444cd7f",
- name: "Kungfu Panda",
- creatorId: "5ba4660cc9a0f8001444cd79",
- genre: "Hành động",
- content: "This is Kungfu Panda content",
- releaseDate: 1537462800000,
- posterURL: "/images/1526555148166.jpg",
- createdDate: 1537502715851,
- user: {
- _id: "5ba4660cc9a0f8001444cd79",
- email: "abc@email.com",
- password: "$2b$10$9SoGF9vh/ox5VXX/6N4e1e82ntf3He9NbgS1zNu3tmKC.LC6CHtOO",
- name: "mina",
- userLink: "mina-4cd79",
- avatarURL: "/images/source.gif"
- },
- link: "abc-4cd7f"
+ "_id": "5ba46dfbc9a0f8001444cd7f",
+ "name": "Kungfu Panda",
+ "creatorId": "5ba4660cc9a0f8001444cd79",
+ "genre": "Hành động",
+ "content": "This is Kungfu Panda content",
+ "releaseDate": 1537462800000,
+ "posterURL": "/images/1526555148166.jpg",
+ "createdDate": 1537502715851,
+  "link": "abc-4cd7f"
  }
 }
 ```
