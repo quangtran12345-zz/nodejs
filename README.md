@@ -12,10 +12,10 @@
 ### 1.2 '/api/cinema/'
 `POST` - Create movie <br>
 #### Request Params
-`title`: Movie title `<String>` (required)
-`genre`: Movie genre `<String>` (required)
-`releaseDate`: Movie release date `<String: DD/MM/YYYY>` (required)
-`content`: Movie description `<String>`
+`title`: Movie title `<String>` (required)<br>
+`genre`: Movie genre `<String>` (required)<br>
+`releaseDate`: Movie release date `<String: DD/MM/YYYY>` (required)<br>
+`content`: Movie description `<String>`<br>
 #### Request Example
 ```json
 {  
