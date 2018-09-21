@@ -9,7 +9,7 @@
 #### Error Response
 { error: `<String>` } <br>
 
-### 1.2 '/api/cinema/' [All]
+### 1.2 '/api/cinema/'
 `POST` - Create movie <br>
 #### Request Params
 `title`: Movie title `<String>` (required)
@@ -55,6 +55,7 @@ cinema: {
   },
   link: "abc-4cd7f"
 }
+```
 #### Success Response
 { message: `Movie created successfully`, photoURL: `<String>` } <br>
 #### Error Response
