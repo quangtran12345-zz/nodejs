@@ -37,7 +37,7 @@
 #### Sample response
 ```json
 {
-cinema: {
+"cinema": {
  "_id": "5ba46dfbc9a0f8001444cd7f",
  "name": "Kungfu Panda",
  "creatorId": "5ba4660cc9a0f8001444cd79",
