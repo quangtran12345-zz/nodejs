@@ -55,7 +55,6 @@
 #### Error Response
 { error: `<String>` }
 ## 2. API AUTH
----
 ### 2.1 '/api/auth/signup' [All]
 `POST` - Sign up an account <br>
 #### Request Params
