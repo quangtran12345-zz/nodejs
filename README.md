@@ -1,7 +1,7 @@
 ## API DOCUMENTATION
 - Domain API: `https://cinema-hatin.herokuapp.com/`
 - Các thông tin về ngày tháng là kiểu number (miliseconds timestamp)
-## 1. API 
+## 1. API MOVIE
 ### 1.1 'api/cinema' [All]
 `GET` - Get all movies <br>
 #### Success Response
@@ -54,3 +54,40 @@
 { cinema : `<Object>`} <br>
 #### Error Response
 { error: `<String>` }
+## 2. API AUTH
+---
+### 2.1 '/api/auth/signup' [All]
+`POST` - Sign up an account <br>
+#### Request Params
+`email`: Email `<String>` (required)
+`username`: User's name `<String>` (required)
+`password`: Password `<String>` (required)
+#### Request Example
+```json
+{
+  "email": "test1@cinema.com",
+  "username": "Test Cinema",
+  "password": "maenic"
+}
+```
+#### Success Response
+{ user: `<User Object>`} <br>
+#### Error Response
+{ error: `<String>` } <br>
+
+### 2.2 '/api/auth/signin' [All]
+`POST` - Sign in <br>
+#### Request Params
+`email`: Email `<String>` (required)
+`password`: Password `<String>` (required)
+#### Request Example
+```json
+{
+  "email": "test1@cinema.com",  
+  "password": "maenic"
+}
+```
+#### Success Response
+{ status: `200`, message: `Sign in successfully`, user: `<User Object>`, token: `<String>` } <br>
+#### Error Response
+{ status: `<Number>`, errorMessage: `<String>` } <br>
