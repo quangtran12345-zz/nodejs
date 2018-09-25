@@ -88,6 +88,6 @@
 }
 ```
 #### Success Response
-{ status: `200`, message: `Sign in successfully`, user: `<User Object>`, token: `<String>` } <br>
+{ status: `200`, user: `<User Object>`, token: `<String>` } <br>
 #### Error Response
 { status: `<Number>`, errorMessage: `<String>` } <br>
