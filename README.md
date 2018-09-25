@@ -90,3 +90,18 @@
 { status: `200`, user: `<User Object>`, token: `<String>` } <br>
 #### Error Response
 { status: `<Number>`, errorMessage: `<String>` } <br>
+### 2.3 '/api/auth/user' [All]
+`POST` - Get user's info <br>
+#### Request Params
+`email`: Email `<String>` (required)
+`password`: Password `<String>` (required)
+#### Request Example
+```json
+{
+  "token" : "token"
+}
+```
+#### Success Response
+{`<User Object>`} <br>
+#### Error Response
+{ status: `<Number>`, errorMessage: `<String>` } <br>
