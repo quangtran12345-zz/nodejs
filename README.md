@@ -16,6 +16,7 @@
 `genre`: Movie genre `<String>` (required)<br>
 `releaseDate`: Movie release date `<String: DD/MM/YYYY>` (required)<br>
 `content`: Movie description `<String>`<br>
+`file`: Image File `<File>`<br>
 #### Request Example
 ```json
 {  
