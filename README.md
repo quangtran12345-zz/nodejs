@@ -65,7 +65,7 @@
 ```json
 {
   "email": "test1@cinema.com",
-  "username": "Test Cinema",
+  "name": "Test Cinema",
   "password": "maenic"
 }
 ```
