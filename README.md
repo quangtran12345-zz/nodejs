@@ -12,11 +12,10 @@
 ### 1.2 '/api/cinema/'
 `POST` - Create movie <br>
 #### Request Params
-`title`: Movie title `<String>` (required)<br>
+`name`: Movie title `<String>` (required)<br>
 `genre`: Movie genre `<String>` (required)<br>
 `releaseDate`: Movie release date `<String: DD/MM/YYYY>` (required)<br>
 `content`: Movie description `<String>`<br>,
-`name`: User name `<String>`<br>
 `creatorId`: User Id `<String>`<br>
 `file`: Image File `<File>`<br>
 #### Request Example
@@ -26,8 +25,7 @@
   "genre": "Hành động",
   "releaseDate": "20/12/2017",
   "content": "The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, expands and tightens his grip on the family crime syndicate.",
-  "creatorId": "5b80d5df3fa6fb3a985711d0",
-  "name" "Tin Ha"
+  "creatorId": "5b80d5df3fa6fb3a985711d0",  
 }
 ```
 #### Success Response
