@@ -9,9 +9,7 @@ const ejs = require('ejs')
 router.post('/signup', async (req, res) => {
   try {
     let user = await authController.createUser(req.body)
-    res.send({
-      user: user
-    })
+    res.send(responseStatus.Code200({message: 'Create user successfully', user: user}))
   } catch (error) {
     res.status(400).send(error)
   }

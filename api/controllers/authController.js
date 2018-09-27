@@ -23,6 +23,11 @@ const createUser = async function (data) {
         errorMessage: responseStatus.EXIST_EMAIL
       }))
     }
+    if (!validateEmail(data.email)) {
+      throw (responseStatus.Code400({
+        errorMessage: 'Email format is invalid'
+      }))
+    }
     let savedUser = new User(data)
     savedUser.userLink = generateLink(savedUser)
     let newPassword = bcrypt.hashSync(data.password, 10)
@@ -113,6 +118,10 @@ const signUpForSocial = async function (newUser) {
   } catch (error) {
     return error
   }
+}
+function validateEmail (email) {
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  return re.test(String(email).toLowerCase())
 }
 module.exports = {
   createUser: createUser,

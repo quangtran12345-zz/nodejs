@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "angular": "^1.7.3",
-    "bcrypt": "3.0.0",
+    "bcrypt": "2.0.1",
     "connect-multiparty": "^2.1.1",
     "cookie": "^0.3.1",
     "cookie-parse": "^0.4.0",
