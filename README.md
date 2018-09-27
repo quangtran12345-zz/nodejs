@@ -14,7 +14,7 @@
 #### Request Params
 `name`: Movie title `<String>` (required)<br>
 `genre`: Movie genre `<String>` (required)<br>
-`releaseDate`: Movie release date `<String: DD/MM/YYYY>` (required)<br>
+`releaseDate`: Movie release date `<TimeStamp>` (required)<br>
 `content`: Movie description `<String>`<br>,
 `creatorId`: User Id `<String>`<br>
 `file`: Image File `<File>`<br>
@@ -23,7 +23,7 @@
 {  
   "name": "The Godfather II",
   "genre": "Hành động",
-  "releaseDate": "20/12/2017",
+  "releaseDate": "1538026421940",
   "content": "The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, expands and tightens his grip on the family crime syndicate.",
   "creatorId": "5b80d5df3fa6fb3a985711d0",  
 }
