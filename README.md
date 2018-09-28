@@ -1,6 +1,5 @@
 ## API DOCUMENTATION
 - Domain API: `https://cinema-hatin.herokuapp.com/`
-- Các thông tin về ngày tháng là kiểu number (miliseconds timestamp)
 ## 1. API MOVIE
 ### 1.1 'api/cinema' [All]
 `GET` - Get all movies <br>
@@ -12,26 +11,28 @@
 ### 1.2 '/api/cinema/'
 `POST` - Create movie <br>
 #### Request Params
-`title`: Movie title `<String>` (required)<br>
+`name`: Movie title `<String>` (required)<br>
 `genre`: Movie genre `<String>` (required)<br>
-`releaseDate`: Movie release date `<String: DD/MM/YYYY>` (required)<br>
-`content`: Movie description `<String>`<br>
+`releaseDate`: Movie release date `<TimeStamp>` (required)<br>
+`content`: Movie description `<String>`<br>,
+`creatorId`: User Id `<String>`<br>
 `file`: Image File `<File>`<br>
 #### Request Example
 ```json
 {  
   "name": "The Godfather II",
   "genre": "Hành động",
-  "releaseDate": "20/12/2017",
-  "content": "The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, expands and tightens his grip on the family crime syndicate."
+  "releaseDate": "1538026421940",
+  "content": "The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, expands and tightens his grip on the family crime syndicate.",
+  "creatorId": "5b80d5df3fa6fb3a985711d0",  
 }
 ```
 #### Success Response
-{ message: `Movie created successfully`, photoURL: `<String>` } <br>
+{ message: `Movie created successfully`} <br>
 #### Error Response
 { errorMessage: `<String>` } <br>
 
-### 1.3 '/api/v1/cinema/:id' [All]
+### 1.3 '/api/v1/cinema/:id'
 `GET` - Get 1 movie by _id <br>
 #### Success Response
 { cinema: `<Movies Object>` } <br>
@@ -55,8 +56,35 @@
 { cinema : `<Object>`} <br>
 #### Error Response
 { error: `<String>` }
+### 1.4 '/api/cinema/edit'
+`POST` - Edit movie, require token at headers for authorization <br> <br>
+#### Request Params
+`name`: Movie title `<String>` (required)<br>
+`genre`: Movie genre `<String>` (required)<br>
+`releaseDate`: Movie release date `<TimeStamp>` (required)<br>
+`content`: Movie description `<String>`<br>
+`creatorId`: User Id `<String>`(required)<br>
+`id`: Movie id `<String>`(required)<br>
+`file`: Image File `<File>`<br>
+#### Request Example
+```json
+{  
+  
+  "name": "The Godfather II",
+  "genre": "Hành động",
+  "releaseDate": "1538026421940",
+  "content": "The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, expands and tightens his grip on the family crime syndicate.",
+  "creatorId": "5b80d5df3fa6fb3a985711d0",  
+  "id": "5bae52383cf67935fce91557",
+  "file" : [file]
+}
+```
+#### Success Response
+{ message: `Edit movie successfully`} <br>
+#### Error Response
+{ errorMessage: `<String>` } <br>
 ## 2. API AUTH
-### 2.1 '/api/auth/signup' [All]
+### 2.1 '/api/auth/signup' 
 `POST` - Sign up an account <br>
 #### Request Params
 `email`: Email `<String>` (required)
@@ -71,11 +99,11 @@
 }
 ```
 #### Success Response
-{ user: `<User Object>`} <br>
+{ status: `200`, message: "User created succesfully", user: `<User Object>`, token: `<String>`} <br>
 #### Error Response
 { error: `<String>` } <br>
 
-### 2.2 '/api/auth/signin' [All]
+### 2.2 '/api/auth/signin'
 `POST` - Sign in <br>
 #### Request Params
 `email`: Email `<String>` (required)
@@ -91,7 +119,7 @@
 { status: `200`, user: `<User Object>`, token: `<String>` } <br>
 #### Error Response
 { status: `<Number>`, errorMessage: `<String>` } <br>
-### 2.3 '/api/auth/user' [All]
+### 2.3 '/api/auth/user' 
 `POST` - Get user's info <br>
 #### Request Params
 `email`: Email `<String>` (required)
@@ -106,3 +134,36 @@
 {`<User Object>`} <br>
 #### Error Response
 { status: `<Number>`, errorMessage: `<String>` } <br>
+## 3. API USER
+### 2.1 '/api/user/change-password'
+`POST` - Change password, require token at headers for authorization <br>
+#### Request Params
+`oldPassword`: Current Password `<String>` (required)
+`newPassword`: New Password `<String>` (required)
+#### Request Example
+Headers: [x-access-token: token]
+```json
+{
+  "oldPassword": "abc123",
+  "newPassword": "xyz456",  
+}
+```
+#### Success Response
+{ status: `200`, message: "Change password successfully"} <br>
+#### Error Response
+{ error: `<String>` } <br>
+### 2.2 '/api/user/edit'
+`POST` - Update user's name, require token at headers for authorization <br>
+#### Request Params
+`name`: Name `<String>` (required)
+#### Request Example
+Headers: [x-access-token: token]
+```json
+{
+  "name" : "abc"
+}
+```
+#### Success Response
+{ status: `200`, message: "Update info successfully"} <br>
+#### Error Response
+{ error: `<String>` } <br>
