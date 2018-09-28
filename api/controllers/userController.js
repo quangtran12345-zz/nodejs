@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const User = mongoose.model('User')
 const responseStatus = require('../configs/responseStatus')
 const common = require('../shared/common')
+const bcrypt = require('bcrypt')
 const generateLink = function (data) {
   let id = data.id.substr(data.id.length - 5)
   let convertedlink = common.convertToUsignedChar(data.name)
@@ -38,8 +39,19 @@ const getUser = async function (id) {
     throw error
   }
 }
+const changePassword = async function (user, oldPassword, newPassword) {
+  if (!user.authenticate(oldPassword)) {
+    throw responseStatus.Code400({ errorMessage: 'Wrong password' })
+  } else {
+    newPassword = bcrypt.hashSync(newPassword, 10)
+    user.password = newPassword
+    await user.save()
+    return responseStatus.Code200({message: 'Change password successfully'})
+  }
+}
 module.exports = {
   addImage: addImage,
   updateUser: updateUser,
-  getUser: getUser
+  getUser: getUser,
+  changePassword: changePassword
 }

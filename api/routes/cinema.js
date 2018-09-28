@@ -64,6 +64,45 @@ router.post('/', fileUpload(), async (req, res) => {
     })
   }
 })
+
+router.post('/edit', fileUpload(), async (req, res) => {
+  let fileName
+  if (req.files) {
+    fileName = req.files.file.name
+    let imageFile = req.files.file
+    imageFile.mv(__dirname + '/../../public/images/' + fileName, function (err) {
+      if (err) {
+        res.send({
+          error: err
+        })
+      }
+    })
+  }
+  try {
+    const token = req.headers['x-access-token']
+    const user = await authController.authenWithToken(token)
+    if (!user) {
+      throw responseStatus.Code400({errorMessage: 'Invalid request'})
+    }
+    if (user._id.toString() !== req.body.creatorId) {
+      throw responseStatus.Code400({errorMessage: 'User have no authorization to access movie'})
+    }
+    if (fileName) {
+      req.body.posterURL = `/images/${fileName}`
+    }
+
+    let cinema = await cinemaController.createCinema(req.body, user._id)
+    if (cinema) {
+      res.send(responseStatus.Code200({message: 'Edit movie successfully'}))
+    } else {
+      throw responseStatus.Code400({errorMessage: 'Movie not found'})
+    }
+  } catch (error) {
+    res.send({
+      error: error
+    })
+  }
+})
 router.get('/:id', async (req, res) => {
   try {
     let cinema = await cinemaController.getCinema(req.params.id)

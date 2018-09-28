@@ -5,11 +5,15 @@ const fileUpload = require('express-fileupload')
 var passport = require('../configs/passport').passport
 const authController = require('../controllers/authController')
 var responseStatus = require('../configs/responseStatus')
+var jwt = require('jsonwebtoken')
 const ejs = require('ejs')
 router.post('/signup', async (req, res) => {
   try {
     let user = await authController.createUser(req.body)
-    res.send(responseStatus.Code200({message: 'Create user successfully', user: user}))
+    var token = jwt.sign({ email: user.email }, '5AOaR3iBvq0MdXPojhXDkIBORk3GvH1g', {
+      expiresIn: '1y'
+    })
+    res.send(responseStatus.Code200({message: 'Create user successfully', user: user, token: token}))
   } catch (error) {
     res.status(400).send(error)
   }

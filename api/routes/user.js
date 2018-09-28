@@ -77,7 +77,68 @@ router.put('/:id/change-avatar', fileUpload(), async (req, res) => {
   try {
     let avatarURL = `/images/${fileName}`
     let savedData = await userController.addImage(req.params.id, avatarURL)
-    res.status(200).send(responseStatus.Code200)
+    res.send(responseStatus.Code200({message: 'Thay đổi avatar thành công'}))
+  } catch (error) {
+    res.send({
+      error: error
+    })
+  }
+})
+
+router.post('/change-password', async (req, res) => {
+  try {
+    const token = req.headers['x-access-token']
+    const user = await authController.authenWithToken(token)
+    if (!user) {
+      throw responseStatus.Code400({errorMessage: 'User not found'})
+    }
+    const response = await userController.changePassword(user, req.body.oldPassword, req.body.newPassword)
+    res.send(response)
+  } catch (error) {
+    res.send({
+      error: error
+    })
+  }
+})
+
+router.post('/edit', async (req, res) => {
+  try {
+    const token = req.headers['x-access-token']
+    const user = await authController.authenWithToken(token)
+    if (!user) {
+      throw responseStatus.Code400({errorMessage: 'User not found'})
+    }
+    const response = await userController.updateUser(user._id, req.body)
+    res.send(responseStatus.Code200({message: 'Update info successfully', response}))
+  } catch (error) {
+    res.send({
+      error: error
+    })
+  }
+})
+
+router.post('/change-avatar', fileUpload(), async (req, res) => {
+  let fileName
+  if (req.files) {
+    fileName = req.files.file.name
+    let imageFile = req.files.file
+    imageFile.mv(__dirname + '/../../public/images/' + fileName, function (err) {
+      if (err) {
+        res.send({
+          error: err
+        })
+      }
+    })
+  }
+  try {
+    const token = req.headers['x-access-token']
+    const user = await authController.authenWithToken(token)
+    if (!user) {
+      throw responseStatus.Code400({errorMessage: 'User not found'})
+    }
+    let avatarURL = `/images/${fileName}`
+    let savedData = await userController.addImage(user._id, avatarURL)
+    res.send(responseStatus.Code200({message: 'Update avatar succesfully'}))
   } catch (error) {
     res.send({
       error: error
