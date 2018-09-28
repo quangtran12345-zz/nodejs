@@ -1,6 +1,5 @@
 ## API DOCUMENTATION
 - Domain API: `https://cinema-hatin.herokuapp.com/`
-- Các thông tin về ngày tháng là kiểu number (miliseconds timestamp)
 ## 1. API MOVIE
 ### 1.1 'api/cinema' [All]
 `GET` - Get all movies <br>
@@ -110,7 +109,7 @@
 { status: `<Number>`, errorMessage: `<String>` } <br>
 ## 3. API USER
 ### 2.1 '/api/user/change-password' [All]
-`POST` - Change password, Require token at headers for authorization <br>
+`POST` - Change password, require token at headers for authorization <br>
 #### Request Params
 `oldPassword`: Current Password `<String>` (required)
 `newPassword`: New Password `<String>` (required)
