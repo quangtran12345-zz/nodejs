@@ -67,9 +67,9 @@
 `id`: Movie id `<String>`(required)<br>
 `file`: Image File `<File>`<br>
 #### Request Example
+Headers: [x-access-token: token]
 ```json
 {  
-  
   "name": "The Godfather II",
   "genre": "Hành động",
   "releaseDate": "1538026421940",
