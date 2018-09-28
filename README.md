@@ -73,7 +73,7 @@
 }
 ```
 #### Success Response
-{ status: `200`, message: "User created succesfully", user: `<User Object>`} <br>
+{ status: `200`, message: "User created succesfully", user: `<User Object>`, token: `<String>`} <br>
 #### Error Response
 { error: `<String>` } <br>
 
