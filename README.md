@@ -63,17 +63,20 @@
 `genre`: Movie genre `<String>` (required)<br>
 `releaseDate`: Movie release date `<TimeStamp>` (required)<br>
 `content`: Movie description `<String>`<br>
-`file`: Image File `<File>`<br>
+`creatorId`: User Id `<String>`(required)<br>
 `id`: Movie id `<String>`(required)<br>
+`file`: Image File `<File>`<br>
 #### Request Example
 ```json
 {  
+  
   "name": "The Godfather II",
   "genre": "Hành động",
   "releaseDate": "1538026421940",
   "content": "The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, expands and tightens his grip on the family crime syndicate.",
   "creatorId": "5b80d5df3fa6fb3a985711d0",  
-  "id": "5bae52383cf67935fce91557"
+  "id": "5bae52383cf67935fce91557",
+  "file" : [file]
 }
 ```
 #### Success Response
