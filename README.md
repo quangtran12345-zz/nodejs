@@ -108,3 +108,21 @@
 {`<User Object>`} <br>
 #### Error Response
 { status: `<Number>`, errorMessage: `<String>` } <br>
+## 3. API USER
+### 2.1 '/api/user/change-password' [All]
+`POST` - Change password, Require token for authorization <br>
+#### Request Params
+`oldPassword`: Current Password `<String>` (required)
+`newPassword`: New Password `<String>` (required)
+#### Request Example
+Headers [x-access-token: token ]
+```json
+{
+  "oldPassword": "abc123",
+  "newPassword": "xyz456",  
+}
+```
+#### Success Response
+{ status: `200`, message: "Change password successfully"} <br>
+#### Error Response
+{ error: `<String>` } <br>
