@@ -108,13 +108,13 @@
 #### Error Response
 { status: `<Number>`, errorMessage: `<String>` } <br>
 ## 3. API USER
-### 2.1 '/api/user/change-password' [All]
+### 2.1 '/api/user/change-password'
 `POST` - Change password, require token at headers for authorization <br>
 #### Request Params
 `oldPassword`: Current Password `<String>` (required)
 `newPassword`: New Password `<String>` (required)
 #### Request Example
-Headers [x-access-token: token ]
+Headers: [x-access-token: token]
 ```json
 {
   "oldPassword": "abc123",
@@ -123,5 +123,20 @@ Headers [x-access-token: token ]
 ```
 #### Success Response
 { status: `200`, message: "Change password successfully"} <br>
+#### Error Response
+{ error: `<String>` } <br>
+### 2.2 '/api/user/edit'
+`POST` - Update user's name, require token at headers for authorization <br>
+#### Request Params
+`name`: Name `<String>` (required)
+#### Request Example
+Headers: [x-access-token: token]
+```json
+{
+  "name" : "abc"
+}
+```
+#### Success Response
+{ status: `200`, message: "Update info successfully"} <br>
 #### Error Response
 { error: `<String>` } <br>
