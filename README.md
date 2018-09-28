@@ -28,7 +28,7 @@
 }
 ```
 #### Success Response
-{ message: `Movie created successfully`, photoURL: `<String>` } <br>
+{ message: `Movie created successfully`} <br>
 #### Error Response
 { errorMessage: `<String>` } <br>
 
@@ -56,6 +56,30 @@
 { cinema : `<Object>`} <br>
 #### Error Response
 { error: `<String>` }
+### 1.4 '/api/cinema/edit'
+`POST` - Edit movie, require token at headers for authorization <br> <br>
+#### Request Params
+`name`: Movie title `<String>` (required)<br>
+`genre`: Movie genre `<String>` (required)<br>
+`releaseDate`: Movie release date `<TimeStamp>` (required)<br>
+`content`: Movie description `<String>`<br>,
+`file`: Image File `<File>`<br>
+`id`: Movie id `<String>`(required)<br>
+#### Request Example
+```json
+{  
+  "name": "The Godfather II",
+  "genre": "Hành động",
+  "releaseDate": "1538026421940",
+  "content": "The early life and career of Vito Corleone in 1920s New York City is portrayed, while his son, Michael, expands and tightens his grip on the family crime syndicate.",
+  "creatorId": "5b80d5df3fa6fb3a985711d0",  
+  "id": "5bae52383cf67935fce91557"
+}
+```
+#### Success Response
+{ message: `Edit movie successfully`} <br>
+#### Error Response
+{ errorMessage: `<String>` } <br>
 ## 2. API AUTH
 ### 2.1 '/api/auth/signup' [All]
 `POST` - Sign up an account <br>
