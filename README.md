@@ -7,7 +7,6 @@
 { films: `<Movies Array>` } <br>
 #### Error Response
 { error: `<String>` } <br>
-
 ### 1.2 '/api/cinema/'
 `POST` - Create movie <br>
 #### Request Params
@@ -31,7 +30,6 @@
 { message: `Movie created successfully`} <br>
 #### Error Response
 { errorMessage: `<String>` } <br>
-
 ### 1.3 '/api/v1/cinema/:id'
 `GET` - Get 1 movie by _id <br>
 #### Success Response
