@@ -110,7 +110,7 @@
 { status: `<Number>`, errorMessage: `<String>` } <br>
 ## 3. API USER
 ### 2.1 '/api/user/change-password' [All]
-`POST` - Change password, Require token for authorization <br>
+`POST` - Change password, Require token at headers for authorization <br>
 #### Request Params
 `oldPassword`: Current Password `<String>` (required)
 `newPassword`: New Password `<String>` (required)
