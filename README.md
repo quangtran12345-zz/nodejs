@@ -32,7 +32,7 @@
 #### Error Response
 { errorMessage: `<String>` } <br>
 
-### 1.3 '/api/v1/cinema/:id' [All]
+### 1.3 '/api/v1/cinema/:id'
 `GET` - Get 1 movie by _id <br>
 #### Success Response
 { cinema: `<Movies Object>` } <br>
@@ -62,7 +62,7 @@
 `name`: Movie title `<String>` (required)<br>
 `genre`: Movie genre `<String>` (required)<br>
 `releaseDate`: Movie release date `<TimeStamp>` (required)<br>
-`content`: Movie description `<String>`<br>,
+`content`: Movie description `<String>`<br>
 `file`: Image File `<File>`<br>
 `id`: Movie id `<String>`(required)<br>
 #### Request Example
@@ -81,7 +81,7 @@
 #### Error Response
 { errorMessage: `<String>` } <br>
 ## 2. API AUTH
-### 2.1 '/api/auth/signup' [All]
+### 2.1 '/api/auth/signup' 
 `POST` - Sign up an account <br>
 #### Request Params
 `email`: Email `<String>` (required)
@@ -100,7 +100,7 @@
 #### Error Response
 { error: `<String>` } <br>
 
-### 2.2 '/api/auth/signin' [All]
+### 2.2 '/api/auth/signin'
 `POST` - Sign in <br>
 #### Request Params
 `email`: Email `<String>` (required)
@@ -116,7 +116,7 @@
 { status: `200`, user: `<User Object>`, token: `<String>` } <br>
 #### Error Response
 { status: `<Number>`, errorMessage: `<String>` } <br>
-### 2.3 '/api/auth/user' [All]
+### 2.3 '/api/auth/user' 
 `POST` - Get user's info <br>
 #### Request Params
 `email`: Email `<String>` (required)
