@@ -136,8 +136,8 @@ Headers: [x-access-token: token]
 ### 2.1 '/api/user/change-password'
 `POST` - Change password, require token at headers for authorization <br>
 #### Request Params
-`oldPassword`: Current Password `<String>` (required)
-`newPassword`: New Password `<String>` (required)
+`oldPassword`: Current Password `<String>` (required)<br>
+`newPassword`: New Password `<String>` (required)<br>
 #### Request Example
 Headers: [x-access-token: token]
 ```json
@@ -163,5 +163,20 @@ Headers: [x-access-token: token]
 ```
 #### Success Response
 { status: `200`, message: "Update info successfully"} <br>
+#### Error Response
+{ error: `<String>` } <br>
+### 2.3 '/api/user/change-avatar'
+`POST` - Update user's avatar, require token at headers for authorization <br>
+#### Request Params
+`file`: Image File `<File>`(required)<br>
+#### Request Example
+Headers: [x-access-token: token]
+```json
+{
+  "file":[file]
+}
+```
+#### Success Response
+{ status: `200`, message: "Update avatar succesfully"} <br>
 #### Error Response
 { error: `<String>` } <br>
