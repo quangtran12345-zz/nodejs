@@ -13,7 +13,7 @@
 `name`: Movie title `<String>` (required)<br>
 `genre`: Movie genre `<String>` (required)<br>
 `releaseDate`: Movie release date `<TimeStamp>` (required)<br>
-`content`: Movie description `<String>`<br>,
+`content`: Movie description `<String>`<br>
 `creatorId`: User Id `<String>`<br>
 `file`: Image File `<File>`<br>
 #### Request Example
@@ -55,7 +55,7 @@
 #### Error Response
 { error: `<String>` }
 ### 1.4 '/api/cinema/edit'
-`POST` - Edit movie, require token at headers for authorization <br> <br>
+`POST` - Edit movie, require token at headers for authorization <br>
 #### Request Params
 `name`: Movie title `<String>` (required)<br>
 `genre`: Movie genre `<String>` (required)<br>
