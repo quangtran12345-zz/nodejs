@@ -148,6 +148,20 @@ Headers: [x-access-token: token]
 {`<User Object>`} <br>
 #### Error Response
 { status: `<Number>`, errorMessage: `<String>` } <br>
+### 2.4 '/api/auth/reset-password'
+`POST` - Reset password for user, valid email is required <br>
+#### Request Params
+`email`: email `<String>`(required)<br>
+#### Request Example
+```json
+{
+  "email": "hatin@gmail.com"
+}
+```
+#### Success Response
+{ status: `200`, message: "Yêu cầu thay đổi mật khẩu thành công. Vui lòng kiểm tra email"} <br>
+#### Error Response
+{ error: `<String>` } <br>
 ## 3. API USER
 ### 2.1 '/api/user/change-password'
 `POST` - Change password, require token at headers for authorization <br>
@@ -194,19 +208,5 @@ Headers: [x-access-token: token]
 ```
 #### Success Response
 { status: `200`, message: "Update avatar succesfully"} <br>
-#### Error Response
-{ error: `<String>` } <br>
-### 2.4 '/api/user/reset-password'
-`POST` - Reset password for user, valid email is required <br>
-#### Request Params
-`email`: email `<String>`(required)<br>
-#### Request Example
-```json
-{
-  "email": "hatin@gmail.com"
-}
-```
-#### Success Response
-{ status: `200`, message: "Yêu cầu thay đổi mật khẩu thành công. Vui lòng kiểm tra email"} <br>
 #### Error Response
 { error: `<String>` } <br>
