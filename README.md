@@ -180,3 +180,17 @@ Headers: [x-access-token: token]
 { status: `200`, message: "Update avatar succesfully"} <br>
 #### Error Response
 { error: `<String>` } <br>
+### 2.4 '/api/user/reset-password'
+`POST` - Reset password for user, valid email is required <br>
+#### Request Params
+`email`: email `<Email>`(required)<br>
+#### Request Example
+```json
+{
+  "email": "hatin@gmail.com"
+}
+```
+#### Success Response
+{ status: `200`, message: "Yêu cầu thay đổi mật khẩu thành công. Vui lòng kiểm tra email"} <br>
+#### Error Response
+{ error: `<String>` } <br>
