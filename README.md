@@ -7,14 +7,13 @@
 { films: `<Movies Array>` } <br>
 #### Error Response
 { error: `<String>` } <br>
-
 ### 1.2 '/api/cinema/'
 `POST` - Create movie <br>
 #### Request Params
 `name`: Movie title `<String>` (required)<br>
 `genre`: Movie genre `<String>` (required)<br>
 `releaseDate`: Movie release date `<TimeStamp>` (required)<br>
-`content`: Movie description `<String>`<br>,
+`content`: Movie description `<String>`<br>
 `creatorId`: User Id `<String>`<br>
 `file`: Image File `<File>`<br>
 #### Request Example
@@ -31,7 +30,6 @@
 { message: `Movie created successfully`} <br>
 #### Error Response
 { errorMessage: `<String>` } <br>
-
 ### 1.3 '/api/v1/cinema/:id'
 `GET` - Get 1 movie by _id <br>
 #### Success Response
@@ -57,7 +55,7 @@
 #### Error Response
 { error: `<String>` }
 ### 1.4 '/api/cinema/edit'
-`POST` - Edit movie, require token at headers for authorization <br> <br>
+`POST` - Edit movie, require token at headers for authorization <br>
 #### Request Params
 `name`: Movie title `<String>` (required)<br>
 `genre`: Movie genre `<String>` (required)<br>
@@ -67,9 +65,9 @@
 `id`: Movie id `<String>`(required)<br>
 `file`: Image File `<File>`<br>
 #### Request Example
+Headers: [x-access-token: token]
 ```json
 {  
-  
   "name": "The Godfather II",
   "genre": "Hành động",
   "releaseDate": "1538026421940",
@@ -138,8 +136,8 @@
 ### 2.1 '/api/user/change-password'
 `POST` - Change password, require token at headers for authorization <br>
 #### Request Params
-`oldPassword`: Current Password `<String>` (required)
-`newPassword`: New Password `<String>` (required)
+`oldPassword`: Current Password `<String>` (required)<br>
+`newPassword`: New Password `<String>` (required)<br>
 #### Request Example
 Headers: [x-access-token: token]
 ```json
@@ -165,5 +163,34 @@ Headers: [x-access-token: token]
 ```
 #### Success Response
 { status: `200`, message: "Update info successfully"} <br>
+#### Error Response
+{ error: `<String>` } <br>
+### 2.3 '/api/user/change-avatar'
+`POST` - Update user's avatar, require token at headers for authorization <br>
+#### Request Params
+`file`: Image File `<File>`(required)<br>
+#### Request Example
+Headers: [x-access-token: token]
+```json
+{
+  "file":[file]
+}
+```
+#### Success Response
+{ status: `200`, message: "Update avatar succesfully"} <br>
+#### Error Response
+{ error: `<String>` } <br>
+### 2.4 '/api/user/reset-password'
+`POST` - Reset password for user, valid email is required <br>
+#### Request Params
+`email`: email `<Email>`(required)<br>
+#### Request Example
+```json
+{
+  "email": "hatin@gmail.com"
+}
+```
+#### Success Response
+{ status: `200`, message: "Yêu cầu thay đổi mật khẩu thành công. Vui lòng kiểm tra email"} <br>
 #### Error Response
 { error: `<String>` } <br>
