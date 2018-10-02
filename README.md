@@ -81,6 +81,22 @@ Headers: [x-access-token: token]
 { message: `Edit movie successfully`} <br>
 #### Error Response
 { errorMessage: `<String>` } <br>
+### 1.5 '/api/cinema/delete'
+`POST` - Delete movie, require token at headers for authorization <br>
+#### Request Params
+`_id`: Movie id `<String>`(required)<br>
+
+#### Request Example
+Headers: [x-access-token: token]
+```json
+{  
+  "_id": "5bae52383cf67935fce91557"
+}
+```
+#### Success Response
+{ message: `Delete movie succesfully`} <br>
+#### Error Response
+{ errorMessage: `<String>` } <br>
 ## 2. API AUTH
 ### 2.1 '/api/auth/signup' 
 `POST` - Sign up an account <br>
@@ -183,7 +199,7 @@ Headers: [x-access-token: token]
 ### 2.4 '/api/user/reset-password'
 `POST` - Reset password for user, valid email is required <br>
 #### Request Params
-`email`: email `<Email>`(required)<br>
+`email`: email `<String>`(required)<br>
 #### Request Example
 ```json
 {
