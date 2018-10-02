@@ -155,4 +155,16 @@ router.get('/:id', async (req, res) => {
     })
   }
 })
+router.post('/reset-password', async (req, res) => {
+  try {
+    let result = await authController.sendResetPasword(req)
+    if (result) {
+      res.status(200).send(
+        responseStatus.Code200({message: 'Yêu cầu thay đổi mật khẩu thành công.Vui lòng kiểm tra email'})
+      )
+    }
+  } catch (error) {
+    res.status(400).send({error: error})
+  }
+})
 module.exports = router

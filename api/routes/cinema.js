@@ -65,6 +65,22 @@ router.post('/', fileUpload(), async (req, res) => {
   }
 })
 
+router.post('/delete', async (req, res) => {
+  try {
+    const token = req.headers['x-access-token']
+    const user = await authController.authenWithToken(token)
+    if (!user) {
+      throw responseStatus.Code400({errorMessage: 'User not found'})
+    }
+    const response = await cinemaController.deleteMovie(user, req.body._id)
+    res.send(response)
+  } catch (error) {
+    res.send({
+      error: error
+    })
+  }
+})
+
 router.post('/edit', fileUpload(), async (req, res) => {
   let fileName
   if (req.files) {
@@ -85,7 +101,7 @@ router.post('/edit', fileUpload(), async (req, res) => {
       throw responseStatus.Code400({errorMessage: 'Invalid request'})
     }
     if (user._id.toString() !== req.body.creatorId) {
-      throw responseStatus.Code400({errorMessage: 'User have no authorization to access movie'})
+      throw responseStatus.Code400({errorMessage: 'User has no authorization to access movie'})
     }
     if (fileName) {
       req.body.posterURL = `/images/${fileName}`

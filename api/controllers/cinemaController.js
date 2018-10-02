@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Cinema = mongoose.model('Cinema')
 const common = require('../shared/common')
+const responseStatus = require('../configs/responseStatus')
 const getCinemas = async function () {
   try {
     return await Cinema.find().sort('-createdDate').populate('user').exec()
@@ -51,9 +52,21 @@ const generateLink = function (data) {
   let link = convertedlink.split(' ').join('-') + '-' + id
   return link
 }
+const deleteMovie = async (user, movieId) => {
+  const movie = await Cinema.findById(movieId)
+  if (!movie) {
+    throw responseStatus.Code404({ errorMessage: 'Movie not found' })
+  }
+  if (movie.creatorId !== user._id.toString()) {
+    throw responseStatus.Code404({ errorMessage: 'User has no authorization to access this movie' })
+  }
+  await Cinema.findByIdAndRemove(movieId)
+  return responseStatus.Code200({message: 'Delete movie succesfully'})
+}
 module.exports = {
   getCinemas: getCinemas,
   createCinema: createCinema,
   getCinemaByLink: getCinemaByLink,
-  getCinema: getCinema
+  getCinema: getCinema,
+  deleteMovie: deleteMovie
 }
