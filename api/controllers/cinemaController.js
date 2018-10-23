@@ -39,7 +39,8 @@ const createCinema = async function (data, userId) {
       savedData = await savedData.save()
     } else {
       data.link = generateLink(data)
-      savedData = await Cinema.findByIdAndUpdate(data.id, {$set: data})
+      await Cinema.findByIdAndUpdate(data.id, {$set: data})
+      savedData = await Cinema.findById(data.id)
     }
     return savedData
   } catch (error) {
