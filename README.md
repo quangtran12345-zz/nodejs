@@ -136,8 +136,7 @@ Headers: [x-access-token: token]
 ### 2.3 '/api/auth/user' 
 `POST` - Get user's info <br>
 #### Request Params
-`email`: Email `<String>` (required)
-`password`: Password `<String>` (required)
+`token`: token `<String>` (required)
 #### Request Example
 ```json
 {
