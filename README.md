@@ -81,6 +81,22 @@ Headers: [x-access-token: token]
 { message: `Edit movie successfully`} <br>
 #### Error Response
 { errorMessage: `<String>` } <br>
+### 1.5 '/api/cinema/delete'
+`POST` - Delete movie, require token at headers for authorization <br>
+#### Request Params
+`_id`: Movie id `<String>`(required)<br>
+
+#### Request Example
+Headers: [x-access-token: token]
+```json
+{  
+  "_id": "5bae52383cf67935fce91557"
+}
+```
+#### Success Response
+{ message: `Delete movie succesfully`} <br>
+#### Error Response
+{ errorMessage: `<String>` } <br>
 ## 2. API AUTH
 ### 2.1 '/api/auth/signup' 
 `POST` - Sign up an account <br>
@@ -120,8 +136,7 @@ Headers: [x-access-token: token]
 ### 2.3 '/api/auth/user' 
 `POST` - Get user's info <br>
 #### Request Params
-`email`: Email `<String>` (required)
-`password`: Password `<String>` (required)
+`token`: token `<String>` (required)
 #### Request Example
 ```json
 {
@@ -132,6 +147,20 @@ Headers: [x-access-token: token]
 {`<User Object>`} <br>
 #### Error Response
 { status: `<Number>`, errorMessage: `<String>` } <br>
+### 2.4 '/api/auth/reset-password'
+`POST` - Reset password for user, valid email is required <br>
+#### Request Params
+`email`: email `<String>`(required)<br>
+#### Request Example
+```json
+{
+  "email": "hatin@gmail.com"
+}
+```
+#### Success Response
+{ status: `200`, message: "Yêu cầu thay đổi mật khẩu thành công. Vui lòng kiểm tra email"} <br>
+#### Error Response
+{ error: `<String>` } <br>
 ## 3. API USER
 ### 2.1 '/api/user/change-password'
 `POST` - Change password, require token at headers for authorization <br>
@@ -178,19 +207,5 @@ Headers: [x-access-token: token]
 ```
 #### Success Response
 { status: `200`, message: "Update avatar succesfully"} <br>
-#### Error Response
-{ error: `<String>` } <br>
-### 2.4 '/api/user/reset-password'
-`POST` - Reset password for user, valid email is required <br>
-#### Request Params
-`email`: email `<Email>`(required)<br>
-#### Request Example
-```json
-{
-  "email": "hatin@gmail.com"
-}
-```
-#### Success Response
-{ status: `200`, message: "Yêu cầu thay đổi mật khẩu thành công. Vui lòng kiểm tra email"} <br>
 #### Error Response
 { error: `<String>` } <br>
