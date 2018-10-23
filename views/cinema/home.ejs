@@ -16,12 +16,13 @@
             </div>
             <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
                 <ul class="nav navbar-nav navbar-right">
-                    <li h ng-show="user._id" ng-cloak>
-                        <a ng-href="/user/{{user.userLink}}">
-                            <img id="avatar" width="40px" height="40px" ng-src="{{user.avatarURL}}" src="/images/user-icon.png"> {{user.name}}</a>
+                    <li ng-show="user._id" ng-cloak>
+                        <a id="user-name" ng-href="/user/{{user.userLink}}">
+                            <img id="avatar" width="40px" height="40px" ng-src="{{user.avatarURL}}" src="/images/user-icon.png">                            
+                            {{user.name}}</a>
                     </li>
                     <li ng-show="user._id" ng-cloak>
-                        <a href="/create">
+                        <a id="createMovieBtn" href="/create">
                             <i class="fa fa-plus"></i> Tạo phim</a>
                     </li>
                     <li ng-show="!user._id" ng-cloak>
@@ -29,11 +30,11 @@
                             <i class="fa fa-user-plus"></i> Đăng ký</a>
                     </li>
                     <li ng-show="user._id" ng-cloak>
-                        <a href="" ng-click="signout()">
+                        <a id="btnLogout" href="" ng-click="signout()">
                             <i class="fa fa-sign-out"></i> Đăng xuất</a>
                     </li>
                     <li ng-show="!user._id" ng-cloak>
-                        <a href="/login">
+                        <a id="btnLogin" href="/login">
                             <i class="fa fa-sign-in"></i> Đăng nhập</a>
                     </li>
 
@@ -42,11 +43,14 @@
         </div>
     </header>
     <div class="loader"></div>
-    <div ng-controller="HomeController">
+    
+    <div id="filmList" ng-controller="HomeController">
+        <input type="hidden" id="userId" name="userId" value="{{user._id}}"/>
         <div class="container-fluid">
             <div class="row">
                 <input type="hidden" id="token" value='<%= token %>' />
-                <div ng-repeat="movie in movies" class=" col-md-3 col-sm-6 col-xs-12">
+                <input type="hidden" id="firstMovieId" value="{{movies[0]._id}}" />                
+                <div ng-repeat="movie in movies" class="movie-container col-md-3 col-sm-6 col-xs-12">
                     <div class="item">
                         <div class="item-movie">
                             <a ng-href="/film/{{movie.link}}" class="btn-detail">
@@ -56,21 +60,22 @@
                                 <h3 class="title">
                                     <a ng-href="/film/{{movie.link}}">{{movie.name}}</a>
                                 </h3>
+                                
                                 <p class="text-detail">
                                     <span>
-                                        <strong>Thể loại: </strong>{{movie.genre}}
+                                        <strong>Thể loại: </strong><span class="genre">{{movie.genre}}</span>
                                     </span>
                                 </p>
                                 <p class="text-detail">
                                     <span>
-                                        <strong>Khởi chiếu: </strong>{{movie.releaseDate | date: 'dd-MM-yyyy'}}
+                                        <strong>Khởi chiếu: </strong><span class="releaseDate">{{movie.releaseDate | date: 'dd-MM-yyyy'}}</span>
                                     </span>
                                 </p>
                                 <p class="text-detail">
-                                        <span>
-                                            <strong>Người tạo: </strong>{{movie.user.name}}
-                                        </span>
-                                    </p>
+                                    <span>
+                                        <strong>Người tạo: </strong><span class="creator">{{movie.user.name}}</span>
+                                    </span>
+                                </p>
                                 <a type="button" class="detail-btn btn btn-success" ng-href="/film/{{movie.link}}"><span><i
                                             class="fa fa-info-circle"></i><strong> CHI TIẾT</strong></span></a>
                             </div>
@@ -82,3 +87,22 @@
         </div>
     </div>
     <script src="/javascripts/cinema/home.js"></script>
+    <script>
+    
+$(function () {
+  function checkImage () {
+    var imageList = $('.img-cinema')
+    console.log($(imageList[0]))
+    imageList.each(function () {
+      if (!$(this).get(0).complete) {
+        $(this).attr('src', '/images/movie-image.jpg')
+      } else if ($(this).height() === 16) {
+        $(this).attr('src', '/images/movie-image.jpg')
+      }
+    })
+  }
+  setTimeout(function () {
+    checkImage()
+  }, 3000)
+})
+    </script>
